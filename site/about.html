@@ -20,6 +20,7 @@
     var nxt=cur==='dark'?'light':'dark';
     el.setAttribute('data-theme',nxt);
     try{localStorage.setItem(k,nxt);}catch(e){}
+    if(window.REMARK42) window.REMARK42.changeTheme(nxt);
   };
 })();
 </script>
@@ -53,12 +54,8 @@
 
 <div class="eyebrow"><span class="no">04</span><span class="t">不&nbsp;提&nbsp;供&nbsp;個&nbsp;別&nbsp;諮&nbsp;詢</span></div>
 <p>本站不提供個別諮詢，不回覆個股問題，不收費，不招攬。</p>
-<p>讀者來信只挑選方法、數據與口徑類問題，匿名後在月誌公開回答。
-投稿信箱 <span class="mono">letters@6m.jeromewang.cloud</span>。</p>
-<div class="note" style="border-left-color:var(--hair)">
-一、來信不構成諮詢委任關係。<br>
-二、個股買賣問題不予回覆。<br>
-三、來信即同意匿名公開刊出。</div>
+<p>來信交流：<span class="mono">6m@jeromewang.cloud</span>。
+個股買賣問題不予回覆；值得公開討論的來信，徵得同意或匿名後於月誌引用。</p>
 
 <span id="errata"></span>
 <div class="eyebrow"><span class="no">05</span><span class="t">勘&nbsp;誤&nbsp;總&nbsp;表</span><span class="aside">共 0 筆，永久累積</span></div>
@@ -75,11 +72,11 @@
 <tr><td class="mono">vol_w</td><td class="zh" style="text-align:left">當月倉位係數</td></tr>
 </table></div>
 <p><a class="mono" href="6m_monthly.csv">6m_monthly.csv ↓</a>
-<span class="caption mono"> 更新至 2026-09-30</span></p>
+<span class="caption mono"> 更新至 2026-10-01</span></p>
 <div class="note">頁面數字與 CSV 不符時，以 CSV 重算為準，並列入勘誤。</div>
 <div class="foot">
   <span>個人研究紀錄，非投資建議。詳見<a href="about.html">關於頁</a>。</span>
-  <span class="mono">資料截至 2026-09-30</span>
+  <span class="mono">資料截至 2026-10-01</span>
   <div class="links"><a href="about.html#errata">勘誤</a>
   <a href="feed.xml">RSS</a><a href="6m_monthly.csv">CSV</a></div>
 </div></div>

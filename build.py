@@ -34,6 +34,7 @@ THEME_JS = """<script>
     var nxt=cur==='dark'?'light':'dark';
     el.setAttribute('data-theme',nxt);
     try{localStorage.setItem(k,nxt);}catch(e){}
+    if(window.REMARK42) window.REMARK42.changeTheme(nxt);
   };
 })();
 </script>"""
@@ -209,11 +210,14 @@ def three_tiles(latest, nw):
 {eyebrow('02', '本月三數字', latest['ym'])}
 <div class="tiles">
   <div class="tile"><div class="l">全倉線 當月</div>
-    <div class="n {cls(latest['full'])}">{pct(latest['full'])}</div></div>
+    <div class="n {cls(latest['full'])}">{pct(latest['full'])}</div>
+    <div class="l">20 檔籃子滿倉的原始報酬</div></div>
   <div class="tile"><div class="l">等權含息池 當月</div>
-    <div class="n {cls(latest['bench'])}">{pct(latest['bench'])}</div></div>
+    <div class="n {cls(latest['bench'])}">{pct(latest['bench'])}</div>
+    <div class="l">無資訊等權基準，煞車的尺</div></div>
   <div class="tile"><div class="l">下月建議倉位</div>
-    <div class="n">{nw*100:.0f}<small>%</small></div></div>
+    <div class="n">{nw*100:.0f}<small>%</small></div>
+    <div class="l">依 30% 波動目標自動調節</div></div>
 </div>"""
 
 
@@ -291,110 +295,154 @@ def recent_html(vis):
 # ---------- 月誌 ----------
 
 def journal_page(r, vis, bs, rows_all):
+    _n = [0]
+    def no():
+        _n[0] += 1
+        return f'{_n[0]:02d}'
     c = load_content(r['ym']) or {}
     root = '../'
     seq = '正式實盤第 ' + str(int(r['issue'][1:])) + '／120 個月' if r['official'] \
         else '執行測試期，不計入十年'
-    # 對帳
     acct = c.get('account_ret')
     seg = [x for x in vis if x['official'] == r['official'] and x['ym'] <= r['ym']]
-    cum_model = math.prod(1 + x['actual'] for x in seg) - 1
     cum_from = OFFICIAL_START if r['official'] else TEST_MONTHS[0]
-    recon = ''
-    if acct is not None:
-        cum_acct_known = all(
-            (load_content(x['ym']) or {}).get('account_ret') is not None for x in seg)
-        cum_acct = (math.prod(1 + (load_content(x['ym']) or {})['account_ret'] for x in seg) - 1
-                    if cum_acct_known else None)
-        rows_tbl = (f'<tr><td class="zh">當月 {r["ym"]}</td>'
-                    f'<td class="{cls(r["actual"])}">{pct(r["actual"], 2)}</td>'
-                    f'<td class="{cls(acct)}">{pct(acct, 2)}</td>'
-                    f'<td>{(acct - r["actual"])*100:+.2f}pp</td></tr>')
-        if cum_acct is not None:
-            rows_tbl += (f'<tr><td class="zh">累計 自 {cum_from}</td>'
-                         f'<td class="{cls(cum_model)}">{pct(cum_model, 2)}</td>'
-                         f'<td class="{cls(cum_acct)}">{pct(cum_acct, 2)}</td>'
-                         f'<td>{(cum_acct - cum_model)*100:+.2f}pp</td></tr>')
-        reason = c.get('diff_reason', '')
-        recon = f"""
-{eyebrow('02', '對帳表', '模型線 vs 實際帳戶')}
+    cum_model = math.prod(1 + x['actual'] for x in seg) - 1
+    cum_full = math.prod(1 + x['full'] for x in seg) - 1
+    cum_bench = math.prod(1 + x['bench'] for x in seg) - 1
+    accts = [(load_content(x['ym']) or {}).get('account_ret') for x in seg]
+    prev_issues = [x for x in vis if x['ym'] < r['ym']]
+    issue_start = ((load_content(prev_issues[-1]['ym']) or {}).get('account_value', 1000000)
+                   if prev_issues else 1000000)
+    cum_acct = (math.prod(1 + a for a in accts) - 1) if all(a is not None for a in accts) else None
+
+    # 01 本月持倉
+    holds = ''
+    if c.get('holdings'):
+        hr = ''
+        for h in c['holdings']:
+            hr += (f'<tr><td class="zh">{h["name"]} <span class="mono" style="color:var(--muted)">'
+                   f'{h["code"]}</span></td>'
+                   f'<td>{h["entry"]:g}</td><td>{h["shares"]:,}</td><td>{h["cost"]:,}</td>'
+                   f'<td>{h["exit"]:g}</td>'
+                   f'<td class="{cls(h["ret"])}">{pct(h["ret"])}</td>'
+                   f'<td>{h["weight"]*100:.1f}%</td>'
+                   f'<td class="zh">{h["note"]}</td></tr>')
+        holds = f"""
+{eyebrow(no(), '本月持倉', '作者已持有・交易完成後揭露')}
 <div class="tbl"><table>
-<tr><th></th><th>模型線(實際口徑)</th><th>實際帳戶</th><th>追蹤誤差</th></tr>
-{rows_tbl}
+<tr><th style="text-align:left">股票</th><th>進場價</th><th>股數</th><th>成本</th><th>結算價</th><th>當月損益</th><th>權重</th><th>月底處置</th></tr>
+{hr}
 </table></div>
-<div class="note">差異原因：{reason}</div>"""
-    # 換手
-    t = c.get('turnover')
-    turn = ''
-    if t:
-        turn = f"""
-{eyebrow('03', '換手摘要')}
+<p class="caption">{c.get('holdings_note', '')}</p>"""
+
+    # 02 成績單(單月+累積)
+    def cell(v):
+        return f'<td class="{cls(v)}">{pct(v, 2)}</td>' if v is not None else '<td>—</td>'
+    score = f"""
+{eyebrow(no(), '成績單', f'累積自 {cum_from}')}
+<div class="tbl"><table>
+<tr><th></th><th>當月</th><th>累積</th></tr>
+<tr><td class="zh">實際帳戶 <span class="hint" title="作者真實資金的對帳結果，以總資產(含現金)為分母">ⓘ</span></td>{cell(acct)}{cell(cum_acct)}</tr>
+<tr><td class="zh">帳戶總值 <span class="hint" title="本期期初 → 期末的實際金額；累積欄為對計畫期初之報酬">ⓘ</span></td>
+<td class="mono">{issue_start:,} → {c.get('account_value', 0):,} 元
+({pct(c.get('account_value', 0)/issue_start - 1, 2)})</td>
+<td class="{cls(c.get('account_value', 1000000)/1000000 - 1)}">對計畫期初 1,000,000：{pct(c.get('account_value', 1000000)/1000000 - 1, 2)}</td></tr>
+<tr><td class="zh">全倉線 <span class="hint" title="20 檔等權籃子滿倉的原始報酬，不含倉位調節；十年牆與煞車都用這條">ⓘ</span></td>{cell(r['full'])}{cell(cum_full)}</tr>
+<tr><td class="zh">等權含息池 <span class="hint" title="同流動性條件的等權含息基準，煞車的對照尺">ⓘ</span></td>{cell(r['bench'])}{cell(cum_bench)}</tr>
+</table></div>
+<p class="caption">帳戶報酬以<b>總資產</b>為分母(含未投入現金)。本月依倉位規則投入
+{r['vol_w']*100:.0f}%(30% 波動目標自動調節)；只看已投入資金，本月報酬為
+{(c.get('invested_ret', 0))*100:+.2f}%，與全倉線的差距見下方拆解。十年牆與煞車皆以全倉線計。
+下月建議倉位 {next_weight([x for x in rows_all if x['ym'] <= r['ym']])*100:.0f}%。</p>"""
+    if c.get('diff_reason'):
+        score += f'<div class="note">執行誤差主因：{c["diff_reason"]}</div>'
+
+    # 03 意外與處理
+    events = ''
+    if c.get('episode'):
+        events = f"""
+{eyebrow(no(), '意外與處理')}
+<p>{c['episode']}</p>"""
+
+    # 下月換股與持倉(發佈時已成交)
+    nxt = ''
+    if c.get('next_holdings'):
+        t2 = c.get('next_turnover', {})
+        nr = ''
+        for h in c['next_holdings']:
+            nr += (f'<tr><td class="zh">{h["name"]} <span class="mono" style="color:var(--muted)">'
+                   f'{h["code"]}</span></td>'
+                   f'<td class="zh">{h["kind"]}</td>'
+                   f'<td>{h["entry"]:g}</td><td>{h["shares"]:,}</td><td>{h["cost"]:,}</td>'
+                   f'<td>{h["weight"]*100:.1f}%</td></tr>')
+        nxt = f"""
+{eyebrow(no(), '下月換股與持倉', '發佈時已全數成交')}
 <div class="tiles">
-  <div class="tile"><div class="l">賣出</div><div class="n">{t['sell']}<small> 檔</small></div></div>
-  <div class="tile"><div class="l">買進</div><div class="n">{t['buy']}<small> 檔</small></div></div>
-  <div class="tile"><div class="l">續抱</div><div class="n">{t['keep']}<small> 檔</small></div></div>
+  <div class="tile"><div class="l">賣出</div><div class="n">{t2.get('sell', 0)}<small> 檔</small></div></div>
+  <div class="tile"><div class="l">買進</div><div class="n">{t2.get('buy', 0)}<small> 檔</small></div></div>
+  <div class="tile"><div class="l">續抱</div><div class="n">{t2.get('keep', 0)}<small> 檔</small></div></div>
+  <div class="tile"><div class="l">下月曝險</div>
+    <div class="n">{next_weight([x for x in rows_all if x['ym'] <= r['ym']])*100:.0f}<small>%</small></div>
+    <div class="l">依 30% 波動目標自動調節，其餘持現金</div></div>
 </div>
-<p><b>執行花絮</b></p><p>{c.get('episode', '')}</p>"""
+<div class="tbl"><table>
+<tr><th style="text-align:left">股票</th><th>進出</th><th>進場價</th><th>股數</th><th>成本</th><th>權重</th></tr>
+{nr}
+</table></div>
+<p class="caption">{c.get('next_note', '')}</p>"""
+
+    # 作者復盤
     review = ''
     if c.get('review'):
         paras = ''.join(f'<p>{p}</p>' for p in c['review'].split('\n') if p.strip())
         review = f"""
-{eyebrow('04', '作者復盤')}
+{eyebrow(no(), '作者復盤')}
 {paras}
 <p><span class="seal" style="font-size:.78rem;letter-spacing:.14em;color:var(--seal);
 border:1.5px solid var(--seal);border-radius:4px;padding:.1rem .5rem;font-weight:700">簽收</span>
 <span class="mono" style="font-size:.84rem;color:var(--muted)"> {c.get('published', '')}</span></p>"""
+
     bval = bs.get(r['ym'])
     brake = ''
     if bval is not None:
-        brake = (eyebrow('05', '累積曲線與煞車讀數', '<a href="../index.html">大圖見首頁 →</a>')
+        brake = (eyebrow(no(), '煞車讀數', '<a href="../index.html">累積曲線見首頁 →</a>')
                  + brake_block(bval, '', note=False)
                  + '<p class="caption">觸線＝停止投入、重新驗證，不加碼攤平。</p>')
     mailbag = ''
     if c.get('mailbag'):
         mb = c['mailbag']
         mailbag = f"""
-{eyebrow('06', '讀者來信')}
+{eyebrow(no(), '讀者來信')}
 <p><b style="color:var(--seal)">問</b> {mb['q']}<br>
 <span class="caption">{mb.get('from', '讀者')}，已匿名</span></p>
 <p><b style="color:var(--seal)">答</b> {mb['a']}</p>"""
     comments = f"""
-{eyebrow('07', '留言')}
+{eyebrow(no(), '留言')}
 <div class="note" style="border-left-color:var(--hair)">
-<b>家規</b>(作者回覆一體適用)<br>
-一、不回答個股買賣問題。<br>
-二、只討論方法、數據與口徑。<br>
-三、作者回覆均為一般性資訊，非投資建議。
+一、歡迎就策略提出討論。<br>
+二、勿討論個股買賣問題。
 </div>
-<div class="giscus"></div>
-<script src="https://giscus.app/client.js"
-  data-repo="halfface81/6m-site" data-repo-id="GISCUS_REPO_ID"
-  data-category="Announcements" data-category-id="GISCUS_CAT_ID"
-  data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
-  data-emit-metadata="0" data-input-position="bottom"
-  data-theme="preferred_color_scheme" data-lang="zh-TW" crossorigin="anonymous" async></script>
-<p class="caption">投稿信箱 letters@6m.jeromewang.cloud。來信不構成諮詢委任關係；
-個股買賣問題不予回覆；來信即同意匿名公開刊出。</p>"""
+<div id="remark42"></div>
+<script>
+  var remark_config = {{host: "https://comments.jeromewang.cloud", site_id: "6m",
+    components: ["embed"], locale: "zh", show_email_subscription: false,
+    theme: (document.documentElement.getAttribute('data-theme') === 'dark' ||
+      (!document.documentElement.getAttribute('data-theme') &&
+       matchMedia('(prefers-color-scheme: dark)').matches)) ? 'dark' : 'light'}};
+</script>
+<script src="https://comments.jeromewang.cloud/web/embed.js" defer></script>
+<p class="caption">來信交流：6m@jeromewang.cloud
+(個股買賣問題不予回覆；內容若於月誌公開引用，一律匿名)。</p>"""
     head = f"""
 <div class="kicker">月誌 {r['issue']}</div>
 <h1>{int(r['ym'][:4])} 年 {int(r['ym'][5:7])} 月</h1>
 <p class="sub">{seq}</p>
-<p class="caption mono">發佈 {c.get('published', '—')} ・資料截至 {r['date']} ・永久網址 /{r['ym']}</p>
-{eyebrow('01', '三數字')}
-<div class="tiles">
-  <div class="tile"><div class="l">全倉線 當月</div>
-    <div class="n {cls(r['full'])}">{pct(r['full'])}</div></div>
-  <div class="tile"><div class="l">等權含息池 當月</div>
-    <div class="n {cls(r['bench'])}">{pct(r['bench'])}</div></div>
-  <div class="tile"><div class="l">下月建議倉位</div>
-    <div class="n">{next_weight([x for x in rows_all if x['ym'] <= r['ym']])*100:.0f}<small>%</small></div></div>
-</div>"""
-    body = head + recon + turn + review + brake + mailbag + comments
+<p class="caption mono">發佈 {c.get('published', '—')} ・結算至 {c.get('data_through', r['date'])}(月底收盤選股、次一交易日開盤結算) ・永久網址 /{r['ym']}</p>"""
+    body = head + holds + score + events + nxt + review + brake + mailbag + comments
     err = c.get('errata')
     body += f'<p class="caption">本期勘誤：{err if err else "尚無"}</p>'
     title = f'{r["issue"]} {r["ym"]}|6M 動能月誌'
-    return page(title, 'journal', body, root=root,
-                desc=c.get('summary', ''))
+    return page(title, 'journal', body, root=root, desc=c.get('summary', ''))
 
 
 def archive_page(vis):
@@ -469,12 +517,8 @@ def about_page(vis):
 
 {eyebrow('04', '不提供個別諮詢')}
 <p>本站不提供個別諮詢，不回覆個股問題，不收費，不招攬。</p>
-<p>讀者來信只挑選方法、數據與口徑類問題，匿名後在月誌公開回答。
-投稿信箱 <span class="mono">letters@6m.jeromewang.cloud</span>。</p>
-<div class="note" style="border-left-color:var(--hair)">
-一、來信不構成諮詢委任關係。<br>
-二、個股買賣問題不予回覆。<br>
-三、來信即同意匿名公開刊出。</div>
+<p>來信交流：<span class="mono">6m@jeromewang.cloud</span>。
+個股買賣問題不予回覆；值得公開討論的來信，徵得同意或匿名後於月誌引用。</p>
 
 <span id="errata"></span>
 {eyebrow('05', '勘誤總表', f'共 {n_err} 筆，永久累積')}
@@ -540,8 +584,9 @@ def rss(vis):
 def build():
     global DATA_END
     rows = load_rows()
-    DATA_END = rows[-1]['date']
     vis = site_rows(rows)
+    _lc = load_content(vis[-1]['ym']) or {}
+    DATA_END = _lc.get('data_through', rows[-1]['date'])
     bs = brake_series(rows)
     latest = vis[-1]
     nw = next_weight(rows)

@@ -4,10 +4,427 @@
   "summary": "首月建倉，遞補規則首度實戰",
   "account_ret": 0.0073,
   "account_value": 1007291,
-  "diff_reason": "模型持有倉和（當月 +73%），帳戶因其連日鎖漲停改遞補第 21 名希華；另含首月建倉滑價（亞泰金屬 +2.8% 漲停稅等）。",
-  "turnover": {"sell": 0, "buy": 20, "keep": 0},
+  "diff_reason": "對滿倉口徑的 4.0pp 缺口拆解——倉和缺席 2.65pp：模型持有倉和（開盤口徑 +58.9%），帳戶因其連日鎖漲停遞補第 21 名希華（+5.9%）；首月進場滑價與結算口徑 1.38pp：帳戶為 9:10 零股首撮成交，模型基準為 9/1 開盤價，首日跳空之個股均買貴（亞泰金屬 +2.8%、景碩 +7.7% 等）。",
+  "turnover": {
+    "sell": 0,
+    "buy": 20,
+    "keep": 0
+  },
   "episode": "9/1 以盤中零股建倉，19 檔當日全數成交。倉和連兩日開盤鎖漲停買不到，9/2 晚刪單、依遞補規則改買第 21 名希華，9/3 成交 73.9，比原掛限價便宜。亞泰金屬 9/1 鎖漲停，9/2 以 592 補進，較模型基準貴 2.8%，記為首筆漲停稅。",
-  "review": "（本期為執行測試期第一期。作者開篇與復盤撰寫中，發佈前補上。）",
+  "review": "（創刊開篇與本期復盤由作者親筆，近日補上。）",
   "mailbag": null,
-  "errata": null
+  "errata": null,
+  "data_through": "2026-10-01",
+  "holdings": [
+    {
+      "code": "TWSE:6226",
+      "name": "光鼎",
+      "entry": 32.0,
+      "exit": 45.1,
+      "ret": 0.4094,
+      "note": "續抱",
+      "weight": 0.0494,
+      "shares": 702,
+      "cost": 22464
+    },
+    {
+      "code": "TWSE:6672",
+      "name": "騰輝電子-KY",
+      "entry": 276.0,
+      "exit": 369.0,
+      "ret": 0.337,
+      "note": "續抱",
+      "weight": 0.0492,
+      "shares": 81,
+      "cost": 22356
+    },
+    {
+      "code": "TPEX:3441",
+      "name": "聯一光",
+      "entry": 139.5,
+      "exit": 184.5,
+      "ret": 0.3226,
+      "note": "續抱",
+      "weight": 0.05,
+      "shares": 163,
+      "cost": 22738
+    },
+    {
+      "code": "TPEX:3498",
+      "name": "陽程",
+      "entry": 200.0,
+      "exit": 229.0,
+      "ret": 0.145,
+      "note": "續抱",
+      "weight": 0.0471,
+      "shares": 107,
+      "cost": 21400
+    },
+    {
+      "code": "TWSE:6213",
+      "name": "聯茂",
+      "entry": 555.0,
+      "exit": 623.0,
+      "ret": 0.1225,
+      "note": "續抱",
+      "weight": 0.05,
+      "shares": 41,
+      "cost": 22755
+    },
+    {
+      "code": "TWSE:3189",
+      "name": "景碩",
+      "entry": 882.0,
+      "exit": 970.0,
+      "ret": 0.0998,
+      "note": "續抱",
+      "weight": 0.0524,
+      "shares": 27,
+      "cost": 23814
+    },
+    {
+      "code": "TWSE:2484",
+      "name": "希華",
+      "entry": 73.9,
+      "exit": 78.3,
+      "ret": 0.0595,
+      "note": "賣出",
+      "weight": 0.0484,
+      "shares": 298,
+      "cost": 22022
+    },
+    {
+      "code": "TPEX:6274",
+      "name": "台燿",
+      "entry": 1445.0,
+      "exit": 1520.0,
+      "ret": 0.0519,
+      "note": "續抱",
+      "weight": 0.0477,
+      "shares": 15,
+      "cost": 21675
+    },
+    {
+      "code": "TWSE:2426",
+      "name": "鼎元",
+      "entry": 99.0,
+      "exit": 104.0,
+      "ret": 0.0505,
+      "note": "續抱",
+      "weight": 0.0494,
+      "shares": 227,
+      "cost": 22473
+    },
+    {
+      "code": "TWSE:1303",
+      "name": "南亞",
+      "entry": 243.5,
+      "exit": 255.5,
+      "ret": 0.0493,
+      "note": "續抱",
+      "weight": 0.0493,
+      "shares": 92,
+      "cost": 22402
+    },
+    {
+      "code": "TPEX:6187",
+      "name": "萬潤",
+      "entry": 1335.0,
+      "exit": 1290.0,
+      "ret": -0.0337,
+      "note": "賣出",
+      "weight": 0.0499,
+      "shares": 17,
+      "cost": 22695
+    },
+    {
+      "code": "TWSE:2351",
+      "name": "順德",
+      "entry": 226.0,
+      "exit": 212.5,
+      "ret": -0.0597,
+      "note": "賣出",
+      "weight": 0.0472,
+      "shares": 95,
+      "cost": 21470
+    },
+    {
+      "code": "TPEX:4939",
+      "name": "亞電",
+      "entry": 89.0,
+      "exit": 82.8,
+      "ret": -0.0697,
+      "note": "續抱",
+      "weight": 0.0487,
+      "shares": 249,
+      "cost": 22161
+    },
+    {
+      "code": "TWSE:8039",
+      "name": "台虹",
+      "entry": 329.0,
+      "exit": 300.5,
+      "ret": -0.0866,
+      "note": "續抱",
+      "weight": 0.0492,
+      "shares": 68,
+      "cost": 22372
+    },
+    {
+      "code": "TWSE:6141",
+      "name": "柏承",
+      "entry": 57.6,
+      "exit": 51.8,
+      "ret": -0.1007,
+      "note": "賣出",
+      "weight": 0.0478,
+      "shares": 377,
+      "cost": 21715
+    },
+    {
+      "code": "TPEX:4707",
+      "name": "磐亞",
+      "entry": 34.25,
+      "exit": 30.35,
+      "ret": -0.1139,
+      "note": "賣出",
+      "weight": 0.0501,
+      "shares": 665,
+      "cost": 22776
+    },
+    {
+      "code": "TWSE:2059",
+      "name": "川湖",
+      "entry": 14150.0,
+      "exit": 12055.0,
+      "ret": -0.1481,
+      "note": "續抱",
+      "weight": 0.0622,
+      "shares": 2,
+      "cost": 28300
+    },
+    {
+      "code": "TPEX:6727",
+      "name": "亞泰金屬",
+      "entry": 592.0,
+      "exit": 487.5,
+      "ret": -0.1765,
+      "note": "賣出",
+      "weight": 0.0547,
+      "shares": 42,
+      "cost": 24864
+    },
+    {
+      "code": "TPEX:3081",
+      "name": "聯亞",
+      "entry": 3505.0,
+      "exit": 2715.0,
+      "ret": -0.2254,
+      "note": "賣出",
+      "weight": 0.0462,
+      "shares": 6,
+      "cost": 21030
+    },
+    {
+      "code": "TWSE:3008",
+      "name": "大立光",
+      "entry": 7745.0,
+      "exit": 5945.0,
+      "ret": -0.2324,
+      "note": "續抱",
+      "weight": 0.0511,
+      "shares": 3,
+      "cost": 23235
+    }
+  ],
+  "holdings_note": "2026-09-01 開盤以盤中零股建倉（亞泰金屬 9/2、遞補之希華 9/3 成交）。結算價：續抱者為 9/30 收盤（續抱進下月），賣出者為 10/1 開盤實際成交。權重為成本占比。",
+  "next_holdings": [
+    {
+      "code": "TWSE:7610",
+      "name": "聯友金屬-創",
+      "entry": 1740.0,
+      "shares": 13,
+      "cost": 22620,
+      "kind": "新進",
+      "weight": 0.0476
+    },
+    {
+      "code": "TPEX:6173",
+      "name": "信昌電",
+      "entry": 289.5,
+      "shares": 78,
+      "cost": 22581,
+      "kind": "新進",
+      "weight": 0.0475
+    },
+    {
+      "code": "TWSE:3026",
+      "name": "禾伸堂",
+      "entry": 804.0,
+      "shares": 28,
+      "cost": 22512,
+      "kind": "新進",
+      "weight": 0.0474
+    },
+    {
+      "code": "TPEX:6538",
+      "name": "倉和",
+      "entry": 356.0,
+      "shares": 63,
+      "cost": 22428,
+      "kind": "新進",
+      "weight": 0.0472
+    },
+    {
+      "code": "TWSE:3055",
+      "name": "蔚華科",
+      "entry": 205.0,
+      "shares": 107,
+      "cost": 21935,
+      "kind": "新進",
+      "weight": 0.0462
+    },
+    {
+      "code": "TPEX:2221",
+      "name": "大甲",
+      "entry": 190.0,
+      "shares": 114,
+      "cost": 21660,
+      "kind": "新進",
+      "weight": 0.0456
+    },
+    {
+      "code": "TWSE:2305",
+      "name": "全友",
+      "entry": 62.5,
+      "shares": 327,
+      "cost": 20437,
+      "kind": "新進",
+      "weight": 0.043
+    },
+    {
+      "code": "TWSE:6226",
+      "name": "光鼎",
+      "entry": 45.1,
+      "shares": 702,
+      "cost": 31660,
+      "kind": "續抱",
+      "weight": 0.0667
+    },
+    {
+      "code": "TPEX:3441",
+      "name": "聯一光",
+      "entry": 184.5,
+      "shares": 163,
+      "cost": 30073,
+      "kind": "續抱",
+      "weight": 0.0633
+    },
+    {
+      "code": "TWSE:6672",
+      "name": "騰輝電子-KY",
+      "entry": 369.0,
+      "shares": 81,
+      "cost": 29889,
+      "kind": "續抱",
+      "weight": 0.0629
+    },
+    {
+      "code": "TWSE:3189",
+      "name": "景碩",
+      "entry": 970.0,
+      "shares": 27,
+      "cost": 26190,
+      "kind": "續抱",
+      "weight": 0.0551
+    },
+    {
+      "code": "TWSE:6213",
+      "name": "聯茂",
+      "entry": 623.0,
+      "shares": 41,
+      "cost": 25543,
+      "kind": "續抱",
+      "weight": 0.0538
+    },
+    {
+      "code": "TPEX:3498",
+      "name": "陽程",
+      "entry": 229.0,
+      "shares": 107,
+      "cost": 24503,
+      "kind": "續抱",
+      "weight": 0.0516
+    },
+    {
+      "code": "TWSE:2059",
+      "name": "川湖",
+      "entry": 12055.0,
+      "shares": 2,
+      "cost": 24110,
+      "kind": "續抱",
+      "weight": 0.0508
+    },
+    {
+      "code": "TWSE:2426",
+      "name": "鼎元",
+      "entry": 104.0,
+      "shares": 227,
+      "cost": 23608,
+      "kind": "續抱",
+      "weight": 0.0497
+    },
+    {
+      "code": "TWSE:1303",
+      "name": "南亞",
+      "entry": 255.5,
+      "shares": 92,
+      "cost": 23506,
+      "kind": "續抱",
+      "weight": 0.0495
+    },
+    {
+      "code": "TPEX:6274",
+      "name": "台燿",
+      "entry": 1520.0,
+      "shares": 15,
+      "cost": 22800,
+      "kind": "續抱",
+      "weight": 0.048
+    },
+    {
+      "code": "TPEX:4939",
+      "name": "亞電",
+      "entry": 82.8,
+      "shares": 249,
+      "cost": 20617,
+      "kind": "續抱",
+      "weight": 0.0434
+    },
+    {
+      "code": "TWSE:8039",
+      "name": "台虹",
+      "entry": 300.5,
+      "shares": 68,
+      "cost": 20434,
+      "kind": "續抱",
+      "weight": 0.043
+    },
+    {
+      "code": "TWSE:3008",
+      "name": "大立光",
+      "entry": 5945.0,
+      "shares": 3,
+      "cost": 17835,
+      "kind": "續抱",
+      "weight": 0.0376
+    }
+  ],
+  "next_note": "2026-09-30 收盤選股，10/1 開盤以盤中零股執行：賣 7 檔、買 7 檔、續抱 13 檔，全數成交（蔚華科、聯友金屬-創、大甲首撮因創新板風險預告書未簽署遭退件，補簽後盤中重掛成交）。續抱者進場價為 9/30 收盤之虛擬結算價，逐月損益可鏈回真實總報酬。",
+  "next_turnover": {
+    "sell": 7,
+    "buy": 7,
+    "keep": 13
+  },
+  "invested_ret": 0.0176
 }

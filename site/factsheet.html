@@ -20,6 +20,7 @@
     var nxt=cur==='dark'?'light':'dark';
     el.setAttribute('data-theme',nxt);
     try{localStorage.setItem(k,nxt);}catch(e){}
+    if(window.REMARK42) window.REMARK42.changeTheme(nxt);
   };
 })();
 </script>
@@ -599,7 +600,7 @@ Santa-Clara(2015)之文獻定位一致：<strong>以部分長期報酬購買下�
 <div class="wrap" style="padding-top:0">
 <div class="foot">
   <span>個人研究紀錄，非投資建議。詳見<a href="about.html">關於頁</a>。</span>
-  <span class="mono">資料截至 2026-09-30</span>
+  <span class="mono">資料截至 2026-10-01</span>
   <div class="links"><a href="about.html#errata">勘誤</a>
   <a href="feed.xml">RSS</a><a href="6m_monthly.csv">CSV</a></div>
 </div></div>

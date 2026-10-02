@@ -20,6 +20,7 @@
     var nxt=cur==='dark'?'light':'dark';
     el.setAttribute('data-theme',nxt);
     try{localStorage.setItem(k,nxt);}catch(e){}
+    if(window.REMARK42) window.REMARK42.changeTheme(nxt);
   };
 })();
 </script>
@@ -34,34 +35,49 @@
 <div class="kicker">月誌 #T1</div>
 <h1>2026 年 9 月</h1>
 <p class="sub">執行測試期，不計入十年</p>
-<p class="caption mono">發佈 2026-10-02 ・資料截至 2026-09-30 ・永久網址 /2026-09</p>
-<div class="eyebrow"><span class="no">01</span><span class="t">三&nbsp;數&nbsp;字</span></div>
-<div class="tiles">
-  <div class="tile"><div class="l">全倉線 當月</div>
-    <div class="n pos">+5.8%</div></div>
-  <div class="tile"><div class="l">等權含息池 當月</div>
-    <div class="n pos">+3.6%</div></div>
-  <div class="tile"><div class="l">下月建議倉位</div>
-    <div class="n">44<small>%</small></div></div>
-</div>
-<div class="eyebrow"><span class="no">02</span><span class="t">對&nbsp;帳&nbsp;表</span><span class="aside">模型線 vs 實際帳戶</span></div>
+<p class="caption mono">發佈 2026-10-02 ・結算至 2026-10-01(月底收盤選股、次一交易日開盤結算) ・永久網址 /2026-09</p>
+<div class="eyebrow"><span class="no">01</span><span class="t">本&nbsp;月&nbsp;持&nbsp;倉</span><span class="aside">作者已持有・交易完成後揭露</span></div>
 <div class="tbl"><table>
-<tr><th></th><th>模型線(實際口徑)</th><th>實際帳戶</th><th>追蹤誤差</th></tr>
-<tr><td class="zh">當月 2026-09</td><td class="pos">+2.53%</td><td class="pos">+0.73%</td><td>-1.80pp</td></tr><tr><td class="zh">累計 自 2026-09</td><td class="pos">+2.53%</td><td class="pos">+0.73%</td><td>-1.80pp</td></tr>
+<tr><th style="text-align:left">股票</th><th>進場價</th><th>股數</th><th>成本</th><th>結算價</th><th>當月損益</th><th>權重</th><th>月底處置</th></tr>
+<tr><td class="zh">光鼎 <span class="mono" style="color:var(--muted)">TWSE:6226</span></td><td>32</td><td>702</td><td>22,464</td><td>45.1</td><td class="pos">+40.9%</td><td>4.9%</td><td class="zh">續抱</td></tr><tr><td class="zh">騰輝電子-KY <span class="mono" style="color:var(--muted)">TWSE:6672</span></td><td>276</td><td>81</td><td>22,356</td><td>369</td><td class="pos">+33.7%</td><td>4.9%</td><td class="zh">續抱</td></tr><tr><td class="zh">聯一光 <span class="mono" style="color:var(--muted)">TPEX:3441</span></td><td>139.5</td><td>163</td><td>22,738</td><td>184.5</td><td class="pos">+32.3%</td><td>5.0%</td><td class="zh">續抱</td></tr><tr><td class="zh">陽程 <span class="mono" style="color:var(--muted)">TPEX:3498</span></td><td>200</td><td>107</td><td>21,400</td><td>229</td><td class="pos">+14.5%</td><td>4.7%</td><td class="zh">續抱</td></tr><tr><td class="zh">聯茂 <span class="mono" style="color:var(--muted)">TWSE:6213</span></td><td>555</td><td>41</td><td>22,755</td><td>623</td><td class="pos">+12.2%</td><td>5.0%</td><td class="zh">續抱</td></tr><tr><td class="zh">景碩 <span class="mono" style="color:var(--muted)">TWSE:3189</span></td><td>882</td><td>27</td><td>23,814</td><td>970</td><td class="pos">+10.0%</td><td>5.2%</td><td class="zh">續抱</td></tr><tr><td class="zh">希華 <span class="mono" style="color:var(--muted)">TWSE:2484</span></td><td>73.9</td><td>298</td><td>22,022</td><td>78.3</td><td class="pos">+5.9%</td><td>4.8%</td><td class="zh">賣出</td></tr><tr><td class="zh">台燿 <span class="mono" style="color:var(--muted)">TPEX:6274</span></td><td>1445</td><td>15</td><td>21,675</td><td>1520</td><td class="pos">+5.2%</td><td>4.8%</td><td class="zh">續抱</td></tr><tr><td class="zh">鼎元 <span class="mono" style="color:var(--muted)">TWSE:2426</span></td><td>99</td><td>227</td><td>22,473</td><td>104</td><td class="pos">+5.1%</td><td>4.9%</td><td class="zh">續抱</td></tr><tr><td class="zh">南亞 <span class="mono" style="color:var(--muted)">TWSE:1303</span></td><td>243.5</td><td>92</td><td>22,402</td><td>255.5</td><td class="pos">+4.9%</td><td>4.9%</td><td class="zh">續抱</td></tr><tr><td class="zh">萬潤 <span class="mono" style="color:var(--muted)">TPEX:6187</span></td><td>1335</td><td>17</td><td>22,695</td><td>1290</td><td class="neg">-3.4%</td><td>5.0%</td><td class="zh">賣出</td></tr><tr><td class="zh">順德 <span class="mono" style="color:var(--muted)">TWSE:2351</span></td><td>226</td><td>95</td><td>21,470</td><td>212.5</td><td class="neg">-6.0%</td><td>4.7%</td><td class="zh">賣出</td></tr><tr><td class="zh">亞電 <span class="mono" style="color:var(--muted)">TPEX:4939</span></td><td>89</td><td>249</td><td>22,161</td><td>82.8</td><td class="neg">-7.0%</td><td>4.9%</td><td class="zh">續抱</td></tr><tr><td class="zh">台虹 <span class="mono" style="color:var(--muted)">TWSE:8039</span></td><td>329</td><td>68</td><td>22,372</td><td>300.5</td><td class="neg">-8.7%</td><td>4.9%</td><td class="zh">續抱</td></tr><tr><td class="zh">柏承 <span class="mono" style="color:var(--muted)">TWSE:6141</span></td><td>57.6</td><td>377</td><td>21,715</td><td>51.8</td><td class="neg">-10.1%</td><td>4.8%</td><td class="zh">賣出</td></tr><tr><td class="zh">磐亞 <span class="mono" style="color:var(--muted)">TPEX:4707</span></td><td>34.25</td><td>665</td><td>22,776</td><td>30.35</td><td class="neg">-11.4%</td><td>5.0%</td><td class="zh">賣出</td></tr><tr><td class="zh">川湖 <span class="mono" style="color:var(--muted)">TWSE:2059</span></td><td>14150</td><td>2</td><td>28,300</td><td>12055</td><td class="neg">-14.8%</td><td>6.2%</td><td class="zh">續抱</td></tr><tr><td class="zh">亞泰金屬 <span class="mono" style="color:var(--muted)">TPEX:6727</span></td><td>592</td><td>42</td><td>24,864</td><td>487.5</td><td class="neg">-17.6%</td><td>5.5%</td><td class="zh">賣出</td></tr><tr><td class="zh">聯亞 <span class="mono" style="color:var(--muted)">TPEX:3081</span></td><td>3505</td><td>6</td><td>21,030</td><td>2715</td><td class="neg">-22.5%</td><td>4.6%</td><td class="zh">賣出</td></tr><tr><td class="zh">大立光 <span class="mono" style="color:var(--muted)">TWSE:3008</span></td><td>7745</td><td>3</td><td>23,235</td><td>5945</td><td class="neg">-23.2%</td><td>5.1%</td><td class="zh">續抱</td></tr>
 </table></div>
-<div class="note">差異原因：模型持有倉和（當月 +73%），帳戶因其連日鎖漲停改遞補第 21 名希華；另含首月建倉滑價（亞泰金屬 +2.8% 漲停稅等）。</div>
-<div class="eyebrow"><span class="no">03</span><span class="t">換&nbsp;手&nbsp;摘&nbsp;要</span></div>
+<p class="caption">2026-09-01 開盤以盤中零股建倉（亞泰金屬 9/2、遞補之希華 9/3 成交）。結算價：續抱者為 9/30 收盤（續抱進下月），賣出者為 10/1 開盤實際成交。權重為成本占比。</p>
+<div class="eyebrow"><span class="no">02</span><span class="t">成&nbsp;績&nbsp;單</span><span class="aside">累積自 2026-09</span></div>
+<div class="tbl"><table>
+<tr><th></th><th>當月</th><th>累積</th></tr>
+<tr><td class="zh">實際帳戶 <span class="hint" title="作者真實資金的對帳結果，以總資產(含現金)為分母">ⓘ</span></td><td class="pos">+0.73%</td><td class="pos">+0.73%</td></tr>
+<tr><td class="zh">帳戶總值 <span class="hint" title="本期期初 → 期末的實際金額；累積欄為對計畫期初之報酬">ⓘ</span></td>
+<td class="mono">1,000,000 → 1,007,291 元
+(+0.73%)</td>
+<td class="pos">對計畫期初 1,000,000：+0.73%</td></tr>
+<tr><td class="zh">全倉線 <span class="hint" title="20 檔等權籃子滿倉的原始報酬，不含倉位調節；十年牆與煞車都用這條">ⓘ</span></td><td class="pos">+5.79%</td><td class="pos">+5.79%</td></tr>
+<tr><td class="zh">等權含息池 <span class="hint" title="同流動性條件的等權含息基準，煞車的對照尺">ⓘ</span></td><td class="pos">+3.64%</td><td class="pos">+3.64%</td></tr>
+</table></div>
+<p class="caption">帳戶報酬以<b>總資產</b>為分母(含未投入現金)。本月依倉位規則投入
+44%(30% 波動目標自動調節)；只看已投入資金，本月報酬為
++1.76%，與全倉線的差距見下方拆解。十年牆與煞車皆以全倉線計。
+下月建議倉位 44%。</p><div class="note">執行誤差主因：對滿倉口徑的 4.0pp 缺口拆解——倉和缺席 2.65pp：模型持有倉和（開盤口徑 +58.9%），帳戶因其連日鎖漲停遞補第 21 名希華（+5.9%）；首月進場滑價與結算口徑 1.38pp：帳戶為 9:10 零股首撮成交，模型基準為 9/1 開盤價，首日跳空之個股均買貴（亞泰金屬 +2.8%、景碩 +7.7% 等）。</div>
+<div class="eyebrow"><span class="no">03</span><span class="t">意&nbsp;外&nbsp;與&nbsp;處&nbsp;理</span></div>
+<p>9/1 以盤中零股建倉，19 檔當日全數成交。倉和連兩日開盤鎖漲停買不到，9/2 晚刪單、依遞補規則改買第 21 名希華，9/3 成交 73.9，比原掛限價便宜。亞泰金屬 9/1 鎖漲停，9/2 以 592 補進，較模型基準貴 2.8%，記為首筆漲停稅。</p>
+<div class="eyebrow"><span class="no">04</span><span class="t">下&nbsp;月&nbsp;換&nbsp;股&nbsp;與&nbsp;持&nbsp;倉</span><span class="aside">發佈時已全數成交</span></div>
 <div class="tiles">
-  <div class="tile"><div class="l">賣出</div><div class="n">0<small> 檔</small></div></div>
-  <div class="tile"><div class="l">買進</div><div class="n">20<small> 檔</small></div></div>
-  <div class="tile"><div class="l">續抱</div><div class="n">0<small> 檔</small></div></div>
+  <div class="tile"><div class="l">賣出</div><div class="n">7<small> 檔</small></div></div>
+  <div class="tile"><div class="l">買進</div><div class="n">7<small> 檔</small></div></div>
+  <div class="tile"><div class="l">續抱</div><div class="n">13<small> 檔</small></div></div>
+  <div class="tile"><div class="l">下月曝險</div>
+    <div class="n">44<small>%</small></div>
+    <div class="l">依 30% 波動目標自動調節，其餘持現金</div></div>
 </div>
-<p><b>執行花絮</b></p><p>9/1 以盤中零股建倉，19 檔當日全數成交。倉和連兩日開盤鎖漲停買不到，9/2 晚刪單、依遞補規則改買第 21 名希華，9/3 成交 73.9，比原掛限價便宜。亞泰金屬 9/1 鎖漲停，9/2 以 592 補進，較模型基準貴 2.8%，記為首筆漲停稅。</p>
-<div class="eyebrow"><span class="no">04</span><span class="t">作&nbsp;者&nbsp;復&nbsp;盤</span></div>
-<p>（本期為執行測試期第一期。作者開篇與復盤撰寫中，發佈前補上。）</p>
+<div class="tbl"><table>
+<tr><th style="text-align:left">股票</th><th>進出</th><th>進場價</th><th>股數</th><th>成本</th><th>權重</th></tr>
+<tr><td class="zh">聯友金屬-創 <span class="mono" style="color:var(--muted)">TWSE:7610</span></td><td class="zh">新進</td><td>1740</td><td>13</td><td>22,620</td><td>4.8%</td></tr><tr><td class="zh">信昌電 <span class="mono" style="color:var(--muted)">TPEX:6173</span></td><td class="zh">新進</td><td>289.5</td><td>78</td><td>22,581</td><td>4.8%</td></tr><tr><td class="zh">禾伸堂 <span class="mono" style="color:var(--muted)">TWSE:3026</span></td><td class="zh">新進</td><td>804</td><td>28</td><td>22,512</td><td>4.7%</td></tr><tr><td class="zh">倉和 <span class="mono" style="color:var(--muted)">TPEX:6538</span></td><td class="zh">新進</td><td>356</td><td>63</td><td>22,428</td><td>4.7%</td></tr><tr><td class="zh">蔚華科 <span class="mono" style="color:var(--muted)">TWSE:3055</span></td><td class="zh">新進</td><td>205</td><td>107</td><td>21,935</td><td>4.6%</td></tr><tr><td class="zh">大甲 <span class="mono" style="color:var(--muted)">TPEX:2221</span></td><td class="zh">新進</td><td>190</td><td>114</td><td>21,660</td><td>4.6%</td></tr><tr><td class="zh">全友 <span class="mono" style="color:var(--muted)">TWSE:2305</span></td><td class="zh">新進</td><td>62.5</td><td>327</td><td>20,437</td><td>4.3%</td></tr><tr><td class="zh">光鼎 <span class="mono" style="color:var(--muted)">TWSE:6226</span></td><td class="zh">續抱</td><td>45.1</td><td>702</td><td>31,660</td><td>6.7%</td></tr><tr><td class="zh">聯一光 <span class="mono" style="color:var(--muted)">TPEX:3441</span></td><td class="zh">續抱</td><td>184.5</td><td>163</td><td>30,073</td><td>6.3%</td></tr><tr><td class="zh">騰輝電子-KY <span class="mono" style="color:var(--muted)">TWSE:6672</span></td><td class="zh">續抱</td><td>369</td><td>81</td><td>29,889</td><td>6.3%</td></tr><tr><td class="zh">景碩 <span class="mono" style="color:var(--muted)">TWSE:3189</span></td><td class="zh">續抱</td><td>970</td><td>27</td><td>26,190</td><td>5.5%</td></tr><tr><td class="zh">聯茂 <span class="mono" style="color:var(--muted)">TWSE:6213</span></td><td class="zh">續抱</td><td>623</td><td>41</td><td>25,543</td><td>5.4%</td></tr><tr><td class="zh">陽程 <span class="mono" style="color:var(--muted)">TPEX:3498</span></td><td class="zh">續抱</td><td>229</td><td>107</td><td>24,503</td><td>5.2%</td></tr><tr><td class="zh">川湖 <span class="mono" style="color:var(--muted)">TWSE:2059</span></td><td class="zh">續抱</td><td>12055</td><td>2</td><td>24,110</td><td>5.1%</td></tr><tr><td class="zh">鼎元 <span class="mono" style="color:var(--muted)">TWSE:2426</span></td><td class="zh">續抱</td><td>104</td><td>227</td><td>23,608</td><td>5.0%</td></tr><tr><td class="zh">南亞 <span class="mono" style="color:var(--muted)">TWSE:1303</span></td><td class="zh">續抱</td><td>255.5</td><td>92</td><td>23,506</td><td>5.0%</td></tr><tr><td class="zh">台燿 <span class="mono" style="color:var(--muted)">TPEX:6274</span></td><td class="zh">續抱</td><td>1520</td><td>15</td><td>22,800</td><td>4.8%</td></tr><tr><td class="zh">亞電 <span class="mono" style="color:var(--muted)">TPEX:4939</span></td><td class="zh">續抱</td><td>82.8</td><td>249</td><td>20,617</td><td>4.3%</td></tr><tr><td class="zh">台虹 <span class="mono" style="color:var(--muted)">TWSE:8039</span></td><td class="zh">續抱</td><td>300.5</td><td>68</td><td>20,434</td><td>4.3%</td></tr><tr><td class="zh">大立光 <span class="mono" style="color:var(--muted)">TWSE:3008</span></td><td class="zh">續抱</td><td>5945</td><td>3</td><td>17,835</td><td>3.8%</td></tr>
+</table></div>
+<p class="caption">2026-09-30 收盤選股，10/1 開盤以盤中零股執行：賣 7 檔、買 7 檔、續抱 13 檔，全數成交（蔚華科、聯友金屬-創、大甲首撮因創新板風險預告書未簽署遭退件，補簽後盤中重掛成交）。續抱者進場價為 9/30 收盤之虛擬結算價，逐月損益可鏈回真實總報酬。</p>
+<div class="eyebrow"><span class="no">05</span><span class="t">作&nbsp;者&nbsp;復&nbsp;盤</span></div>
+<p>（創刊開篇與本期復盤由作者親筆，近日補上。）</p>
 <p><span class="seal" style="font-size:.78rem;letter-spacing:.14em;color:var(--seal);
 border:1.5px solid var(--seal);border-radius:4px;padding:.1rem .5rem;font-weight:700">簽收</span>
-<span class="mono" style="font-size:.84rem;color:var(--muted)"> 2026-10-02</span></p><div class="eyebrow"><span class="no">05</span><span class="t">累&nbsp;積&nbsp;曲&nbsp;線&nbsp;與&nbsp;煞&nbsp;車&nbsp;讀&nbsp;數</span><span class="aside"><a href="../index.html">大圖見首頁 →</a></span></div>
+<span class="mono" style="font-size:.84rem;color:var(--muted)"> 2026-10-02</span></p><div class="eyebrow"><span class="no">06</span><span class="t">煞&nbsp;車&nbsp;讀&nbsp;數</span><span class="aside"><a href="../index.html">累積曲線見首頁 →</a></span></div>
 <div class="brake-head"><span class="brake-label">12 個月滾動超額(對等權池)</span>
   <span class="brake-val" style="color:var(--up)">+34.9pp</span>
   <span class="brake-dist">距停止線 54.9pp</span></div>
@@ -74,23 +90,23 @@ border:1.5px solid var(--seal);border-radius:4px;padding:.1rem .5rem;font-weight
 <div class="brake-scale"><span>−40pp</span><span>−20pp 停止線</span><span>0</span><span>+40pp</span></div><p class="caption">觸線＝停止投入、重新驗證，不加碼攤平。</p>
 <div class="eyebrow"><span class="no">07</span><span class="t">留&nbsp;言</span></div>
 <div class="note" style="border-left-color:var(--hair)">
-<b>家規</b>(作者回覆一體適用)<br>
-一、不回答個股買賣問題。<br>
-二、只討論方法、數據與口徑。<br>
-三、作者回覆均為一般性資訊，非投資建議。
+一、歡迎就策略提出討論。<br>
+二、勿討論個股買賣問題。
 </div>
-<div class="giscus"></div>
-<script src="https://giscus.app/client.js"
-  data-repo="halfface81/6m-site" data-repo-id="GISCUS_REPO_ID"
-  data-category="Announcements" data-category-id="GISCUS_CAT_ID"
-  data-mapping="pathname" data-strict="0" data-reactions-enabled="1"
-  data-emit-metadata="0" data-input-position="bottom"
-  data-theme="preferred_color_scheme" data-lang="zh-TW" crossorigin="anonymous" async></script>
-<p class="caption">投稿信箱 letters@6m.jeromewang.cloud。來信不構成諮詢委任關係；
-個股買賣問題不予回覆；來信即同意匿名公開刊出。</p><p class="caption">本期勘誤：尚無</p>
+<div id="remark42"></div>
+<script>
+  var remark_config = {host: "https://comments.jeromewang.cloud", site_id: "6m",
+    components: ["embed"], locale: "zh", show_email_subscription: false,
+    theme: (document.documentElement.getAttribute('data-theme') === 'dark' ||
+      (!document.documentElement.getAttribute('data-theme') &&
+       matchMedia('(prefers-color-scheme: dark)').matches)) ? 'dark' : 'light'};
+</script>
+<script src="https://comments.jeromewang.cloud/web/embed.js" defer></script>
+<p class="caption">來信交流：6m@jeromewang.cloud
+(個股買賣問題不予回覆；內容若於月誌公開引用，一律匿名)。</p><p class="caption">本期勘誤：尚無</p>
 <div class="foot">
   <span>個人研究紀錄，非投資建議。詳見<a href="../about.html">關於頁</a>。</span>
-  <span class="mono">資料截至 2026-09-30</span>
+  <span class="mono">資料截至 2026-10-01</span>
   <div class="links"><a href="../about.html#errata">勘誤</a>
   <a href="../feed.xml">RSS</a><a href="../6m_monthly.csv">CSV</a></div>
 </div></div>

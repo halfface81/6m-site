@@ -151,3 +151,7 @@ tr.dim td .pos,tr.dim td .neg{opacity:.65}
   .nav-links{gap:.8rem;font-size:.88rem}
   .tile .n{font-size:1.6rem}
 }
+
+.hint{cursor:help;color:var(--muted);font-size:.8em;font-family:"IBM Plex Mono",monospace;
+  border:0;user-select:none}
+.hint:hover{color:var(--seal)}

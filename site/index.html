@@ -20,6 +20,7 @@
     var nxt=cur==='dark'?'light':'dark';
     el.setAttribute('data-theme',nxt);
     try{localStorage.setItem(k,nxt);}catch(e){}
+    if(window.REMARK42) window.REMARK42.changeTheme(nxt);
   };
 })();
 </script>
@@ -50,11 +51,14 @@
 <div class="eyebrow"><span class="no">02</span><span class="t">本&nbsp;月&nbsp;三&nbsp;數&nbsp;字</span><span class="aside">2026-09</span></div>
 <div class="tiles">
   <div class="tile"><div class="l">全倉線 當月</div>
-    <div class="n pos">+5.8%</div></div>
+    <div class="n pos">+5.8%</div>
+    <div class="l">20 檔籃子滿倉的原始報酬</div></div>
   <div class="tile"><div class="l">等權含息池 當月</div>
-    <div class="n pos">+3.6%</div></div>
+    <div class="n pos">+3.6%</div>
+    <div class="l">無資訊等權基準，煞車的尺</div></div>
   <div class="tile"><div class="l">下月建議倉位</div>
-    <div class="n">44<small>%</small></div></div>
+    <div class="n">44<small>%</small></div>
+    <div class="l">依 30% 波動目標自動調節</div></div>
 </div>
 <div class="eyebrow"><span class="no">03</span><span class="t">累&nbsp;積&nbsp;曲&nbsp;線</span></div>
 <div class="legend">
@@ -86,7 +90,7 @@
 </table></div>
 <div class="foot">
   <span>個人研究紀錄，非投資建議。詳見<a href="about.html">關於頁</a>。</span>
-  <span class="mono">資料截至 2026-09-30</span>
+  <span class="mono">資料截至 2026-10-01</span>
   <div class="links"><a href="about.html#errata">勘誤</a>
   <a href="feed.xml">RSS</a><a href="6m_monthly.csv">CSV</a></div>
 </div></div>

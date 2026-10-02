@@ -20,6 +20,7 @@
     var nxt=cur==='dark'?'light':'dark';
     el.setAttribute('data-theme',nxt);
     try{localStorage.setItem(k,nxt);}catch(e){}
+    if(window.REMARK42) window.REMARK42.changeTheme(nxt);
   };
 })();
 </script>
@@ -35,7 +36,7 @@
 <h1>全部月誌</h1><p class="sub">正式 0 期，暖身 1 期。每期網址永久，發佈後不修改。</p><p class="caption mono" style="margin-top:2rem">2026-09 ~ 12 暖身，不計入</p><div class="tbl"><table><tr><th>期數</th><th>月份</th><th>全倉</th><th>等權池</th><th>倉位</th><th style="text-align:left">摘要</th></tr><tr class=dim><td class="mono">#T1</td><td><a class="mono" href="2026-09.html">/2026-09</a></td><td class="pos">+5.8%</td><td class="pos">+3.6%</td><td>44%</td><td class="zh" style="text-align:left">首月建倉，遞補規則首度實戰</td></tr></table></div>
 <div class="foot">
   <span>個人研究紀錄，非投資建議。詳見<a href="../about.html">關於頁</a>。</span>
-  <span class="mono">資料截至 2026-09-30</span>
+  <span class="mono">資料截至 2026-10-01</span>
   <div class="links"><a href="../about.html#errata">勘誤</a>
   <a href="../feed.xml">RSS</a><a href="../6m_monthly.csv">CSV</a></div>
 </div></div>
