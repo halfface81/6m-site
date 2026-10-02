@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6M動能體檢表</title>
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23C2402F'/%3E%3Ctext x='16' y='22' font-size='14' font-family='monospace' fill='%23FBFAF6' text-anchor='middle' font-weight='bold'%3E6M%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="alternate" type="application/rss+xml" title="6M 動能月誌" href="feed.xml">
+<script>
+(function(){
+  var k='6m-theme';
+  try{var t=localStorage.getItem(k); if(t) document.documentElement.setAttribute('data-theme',t);}catch(e){}
+  window.toggleTheme=function(){
+    var el=document.documentElement;
+    var cur=el.getAttribute('data-theme')||
+      (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var nxt=cur==='dark'?'light':'dark';
+    el.setAttribute('data-theme',nxt);
+    try{localStorage.setItem(k,nxt);}catch(e){}
+  };
+})();
+</script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="index.html"><span class="seal">6M</span>動能月誌</a>
+  <div class="nav-links"><a href="index.html" class="">首頁</a><a href="journal/index.html" class="">月誌</a><a href="factsheet.html" class="on">體檢表</a><a href="about.html" class="">關於</a>
+  <button class="theme-btn" onclick="toggleTheme()">主題</button></div>
+</div></nav>
+<style>
+:root{
+  --paper:#FBFAF6; --ink:#1F2933; --muted:#68717C; --hair:#E4E1D8;
+  --up:#C2402F; --dn:#1E7A5F; --seal:#C2402F; --tile:#F2F0E9; --chip:#EBE8DF;
+  --s-strat:#C2402F; --s-tr:#2565A8; --s-ew:#9C7326;
+  --tip-bg:#FFFFFF; --tip-bd:#D8D4C8;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#171B21; --ink:#E7E4DC; --muted:#98A0AA; --hair:#2E333B;
+    --up:#E0684F; --dn:#3FA98B; --seal:#E0684F; --tile:#1F242C; --chip:#242A33;
+    --s-strat:#E0684F; --s-tr:#4E9BD8; --s-ew:#B8862B;
+    --tip-bg:#1F242C; --tip-bd:#3A414C;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#171B21; --ink:#E7E4DC; --muted:#98A0AA; --hair:#2E333B;
+  --up:#E0684F; --dn:#3FA98B; --seal:#E0684F; --tile:#1F242C; --chip:#242A33;
+  --s-strat:#E0684F; --s-tr:#4E9BD8; --s-ew:#B8862B;
+  --tip-bg:#1F242C; --tip-bd:#3A414C;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Noto Sans TC",-apple-system,"PingFang TC",sans-serif;
+  font-size:16px;line-height:1.85;-webkit-font-smoothing:antialiased}
+.wrap{max-width:46rem;margin:0 auto;padding:3.2rem 1.25rem 4.5rem}
+.kicker{font-size:.72rem;letter-spacing:.28em;color:var(--seal);font-weight:700;margin:0 0 .4rem}
+.mast{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+h1{font-family:"Noto Serif TC",serif;font-size:2.4rem;font-weight:700;margin:0;letter-spacing:.06em;text-wrap:balance}
+.seal{font-size:.75rem;letter-spacing:.14em;color:var(--seal);border:1.5px solid var(--seal);
+  border-radius:4px;padding:.15rem .55rem;white-space:nowrap;font-weight:700}
+.sub{color:var(--muted);font-size:.92rem;margin:.5rem 0 0;text-wrap:balance}
+.rule{border:0;border-top:1px solid var(--hair);margin:2rem 0}
+.eyebrow{font-size:.78rem;letter-spacing:.18em;color:var(--seal);font-weight:700;margin:2.8rem 0 -0.4rem}
+h2{font-family:"Noto Serif TC",serif;font-size:1.35rem;font-weight:700;margin:.55rem 0 .7rem;letter-spacing:.03em;text-wrap:balance}
+h3{font-size:1.02rem;font-weight:700;margin:1.5rem 0 .4rem}
+p{margin:.7rem 0}
+.small{font-size:.85rem;color:var(--muted);line-height:1.7}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:1.4rem 0}
+.tile{background:var(--tile);border-radius:8px;padding:.85rem 1rem}
+.tile .n{font-family:"IBM Plex Mono",monospace;font-size:1.45rem;font-weight:500;line-height:1.3;font-variant-numeric:tabular-nums}
+.tile .l{font-size:.78rem;color:var(--muted);line-height:1.5;margin-top:.1rem}
+.dot{display:inline-block;width:.62em;height:.62em;border-radius:2px;margin-right:.4em;vertical-align:baseline;transform:translateY(1px)}
+table{border-collapse:collapse;width:100%;font-size:.9rem;line-height:1.6;font-variant-numeric:tabular-nums}
+.tbl{overflow-x:auto;margin:1rem 0}
+th{font-size:.76rem;letter-spacing:.05em;color:var(--muted);font-weight:500;text-align:right;
+   padding:.4rem .6rem;border-bottom:1px solid var(--hair);white-space:nowrap}
+td{padding:.42rem .6rem;text-align:right;border-bottom:1px solid var(--hair);white-space:nowrap;
+   font-family:"IBM Plex Mono",monospace;font-size:.86rem}
+th:first-child,td:first-child{text-align:left;font-family:"Noto Sans TC",sans-serif;font-size:.9rem}
+.pos{color:var(--up)} .neg{color:var(--dn)}
+.best{font-weight:700}
+ul{padding-left:1.25rem;margin:.6rem 0} li{margin:.35rem 0}
+ol{padding-left:1.35rem;margin:.6rem 0} ol li{margin:.5rem 0}
+.note{border-left:3px solid var(--seal);background:var(--tile);padding:.7rem 1rem;margin:1.1rem 0;font-size:.92rem}
+.foot{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--hair);font-size:.82rem;color:var(--muted)}
+strong{font-weight:700}
+.vlist{counter-reset:v;list-style:none;padding-left:0;margin:.6rem 0}
+.vlist li{counter-increment:v;position:relative;padding-left:2.4rem;margin:.7rem 0;font-size:.9rem;line-height:1.75}
+.vlist li::before{content:counter(v,decimal-leading-zero);position:absolute;left:0;top:.1rem;
+  font-family:"IBM Plex Mono",monospace;font-size:.95rem;font-weight:500;color:var(--seal)}
+.chart-box{margin:1.4rem 0}
+.legend{display:flex;gap:1.1rem;flex-wrap:wrap;font-size:.82rem;color:var(--muted);margin-bottom:.3rem}
+.legend b{color:var(--ink);font-weight:500}
+.chart-wrap{position:relative}
+.chart-wrap svg{display:block;width:100%;height:auto}
+.axis text{font-family:"IBM Plex Mono",monospace;font-size:10.5px;fill:var(--muted)}
+.grid line{stroke:var(--hair);stroke-width:1}
+.series path{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.endlab{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500}
+.anno line{stroke:var(--muted);stroke-width:1;stroke-dasharray:2 3;opacity:.55}
+.anno text{font-size:10px;fill:var(--muted)}
+.xh{stroke:var(--muted);stroke-width:1;opacity:0}
+.tip{position:absolute;pointer-events:none;background:var(--tip-bg);border:1px solid var(--tip-bd);
+  border-radius:6px;padding:.45rem .65rem;font-size:.78rem;line-height:1.55;opacity:0;
+  font-variant-numeric:tabular-nums;box-shadow:0 2px 8px rgba(0,0,0,.08);white-space:nowrap;z-index:2}
+.tip .d{color:var(--muted);font-family:"IBM Plex Mono",monospace}
+.tip .v{font-family:"IBM Plex Mono",monospace}
+@media (prefers-reduced-motion: no-preference){ .xh,.tip{transition:opacity .12s} }
+</style><div class="wrap">
+<div class="kicker">STRATEGY&nbsp;FACTSHEET</div>
+<div class="mast">
+  <h1>6M動能體檢表</h1>
+  <span class="seal">十年計畫實驗</span>
+</div>
+<p class="sub">台股月頻動能策略之公開體檢表。本策略為一項以十年為期之計畫型實驗
+(正式實盤自 2027-01-01 起算；2026-09 ~ 2026-12 為執行測試期，已實資金逐月對帳)：
+主檢視窗口為十年，22 年樣本作為延伸參考。
+所有績效比較均同時對照等權含息基準與加權報酬指數；具體參數不對外揭露。</p>
+
+<hr class="rule">
+
+<div class="eyebrow">方法論</div>
+<h2>策略構造</h2>
+<p>本策略以 Jegadeesh &amp; Titman(1993)所記錄之<strong>橫截面動能</strong>
+(cross-sectional momentum)為核心因子——Fama &amp; French(2008)稱其為
+「首要的市場異常」(the premier anomaly)：過去六個月相對強勢之個股，
+於未來一個月傾向延續其相對強勢。策略將此因子規則化為<strong>月頻換股之投資組合</strong>，
+持有期間不做任何裁量性操作；全部規則於進場前訂定並凍結。</p>
+
+<h3>運作原理(具體參數不對外揭露)</h3>
+<p>個股須先通過<strong>趨勢適格篩選</strong>(time-series trend filter)方能進入候選池
+——其設計與 Clenow(2015)、Gray &amp; Vogel(2016)之公開研究殊途同歸，
+用以剔除「早期漲幅大、近期趨勢已轉弱」而動能分數仍高之個股；
+於候選池中依近六個月含息報酬排序，取前段以<strong>等權為目標權重</strong>分散建倉；
+持有期間不做期中再平衡，權重隨績效自然漂移(weight drift)；
+換股採進出雙門檻之<strong>緩衝設計</strong>(buffer rule)，以抑制排名邊界之隨機性；
+整體曝險依策略自身之<strong>已實現波動</strong>(realized volatility)行
+<strong>波動度目標化</strong>(volatility targeting;Barroso &amp; Santa-Clara, 2015)連續調節
+——波動升高時降低曝險、回落後回升，全程不涉及任何預測；
+另設<strong>預先承諾之相對績效檢核線</strong>，為唯一之停止條款(閾值不揭露)。</p>
+<p>趨勢適格篩選並具一項總體層面之湧現性質：系統性危機期間適格池自然收縮，
+曝險被制度性壓低——2008 年 11 月曾降至<strong>完全空手</strong>——構成無須預測之
+內生風險收縮機制。</p>
+<p class="small">計算口徑：全部數字均為<strong>可執行口徑</strong>——月底收盤後選股、
+次月首個交易日開盤成交(T+1)；計入交易成本；報酬均為含息總報酬；
+樣本含 231 檔已下市個股(存活者偏誤已修復)。</p>
+
+<div class="eyebrow">基準</div>
+<h2>雙基準之設計</h2>
+<p>僅對單一基準之比較易生選擇性偏誤，本表所有比較一律三方並列：</p>
+<ul>
+<li><span class="dot" style="background:var(--s-ew)"></span><strong>等權含息基準</strong>：
+以與策略相同流動性條件(日均成交值 ≥1 億)構成之等權含息組合，<strong>不套用</strong>趨勢篩選，
+月頻再平衡，經獨立驗算吻合。其回答：<em>相對於同一可選集之無資訊等權配置，
+選股規則是否具增量資訊?</em></li>
+<li><span class="dot" style="background:var(--s-tr)"></span><strong>加權報酬指數</strong>：
+臺灣證券交易所發行量加權股價報酬指數(含息)，為可投資之被動替代(市值型 ETF)。
+其回答：<em>相對於不作為，主動管理之機會成本是否值得?</em>
+惟須註記其本身為高度集中之押注——台積電權重約四成。</li>
+</ul>
+<p class="small">兩把基準之相對強弱，反映市值風格之長週期輪動：2024 年起為超大型權值股
+主導格局，任何不集中持有權值股之組合對指數均為結構性落後；2005~2015 中小型股
+主導期間則相反。此為投資組合結構之系統性差異，應以長期口徑評價。</p>
+
+<div class="eyebrow">主檢視・十年</div>
+<h2>十年計畫：主要檢視窗口</h2>
+<p>本策略之實盤定位為<strong>以十年為期之計畫型實驗</strong>
+(正式實盤 2027-01-01 起算十年；2026-09 起之執行測試期已實資金逐月公開對帳)，
+故以「任一起點持有十年」為基本之評估單位。本節先檢視最近一個十年窗口；
+下節將同一把尺套用於歷史上全部 140 個十年窗口，以區分單一窗口之運氣與跨窗口之常態。</p>
+<div class="tiles">
+  <div class="tile"><div class="n" style="color:var(--s-strat)">773 萬</div><div class="l">本策略(含波動度管理與成本)<br>年化 +22.7%</div></div>
+  <div class="tile"><div class="n" style="color:var(--s-tr)">734 萬</div><div class="l">加權報酬指數<br>年化 +22.1%</div></div>
+  <div class="tile"><div class="n" style="color:var(--s-ew)">525 萬</div><div class="l">等權含息基準<br>年化 +18.0%</div></div>
+</div>
+<p class="small">近十年(2016-10 ~ 2026-09)，期初 100 萬。</p>
+<h3>近十年總表(2016-10 ~ 2026-09，120 個月)</h3>
+<div class="tbl"><table>
+<tr><th>指標</th><th>本策略</th><th>等權基準</th><th>加權報酬指數</th></tr>
+<tr><td>期末資產(100 萬起)</td><td class="best">773 萬</td><td>525 萬</td><td>734 萬</td></tr>
+<tr><td>年化報酬(CAGR)</td><td class="pos best">+22.7%</td><td class="pos">+18.0%</td><td class="pos">+22.1%</td></tr>
+<tr><td>最大回撤</td><td class="neg">−47.4%</td><td class="neg">−31.9%</td><td class="neg best">−25.6%</td></tr>
+<tr><td>年化波動度</td><td>33.3%</td><td>23.4%</td><td class="best">18.6%</td></tr>
+<tr><td>Sharpe 比率</td><td>0.75</td><td>0.79</td><td class="best">1.12</td></tr>
+<tr><td>Sortino 比率</td><td>1.30</td><td>1.15</td><td class="best">1.69</td></tr>
+</table></div>
+
+<div class="note"><strong>誠實揭露：近十年，加權報酬指數以約一半之波動度取得幾乎相同之報酬</strong>
+(+22.1% 對 +22.7%)，經風險調整後全面優於本策略。惟該表現屬歷史分布之頂端：
+指數自 2003 年編製以來之滾動十年年化<strong>中位數僅 +9.2%</strong>
+(165 個起點；最差 +4.7%、最佳 +22.5%，53% 之窗口不足 10%)。
+本策略之定位為<strong>長期絕對報酬型</strong>，非風險效率型；若以風險調整效率為首要目標，
+指數化投資為更有效率之選擇。<strong>此一觀察之歷史定位，見下節之滾動窗口分析。</strong></div>
+
+<div class="eyebrow">主檢視・滾動十年</div>
+<h2>140 個十年窗口：運氣或常態</h2>
+<p>上表之「近十年」僅為歷史上 140 個可觀察十年窗口中之<strong>最新一個</strong>。
+單一窗口受起訖時點影響甚大，適當之檢視方式為：對每一個月份起算之十年窗口，
+比較三者之年化報酬——下圖每一點即一個完整十年之持有結果。</p>
+<div class="chart-box">
+  <div class="legend">
+    <span><span class="dot" style="background:var(--s-strat)"></span><b>本策略</b></span>
+    <span><span class="dot" style="background:var(--s-tr)"></span><b>加權報酬指數</b></span>
+    <span><span class="dot" style="background:var(--s-ew)"></span><b>等權含息基準</b></span>
+    <span style="margin-left:auto">十年年化報酬・依起算月份</span>
+  </div>
+  <div class="chart-wrap" id="rollWrap"></div>
+</div>
+<div class="tbl"><table>
+<tr><th>十年年化報酬(140 個窗口)</th><th>本策略</th><th>等權基準</th><th>加權報酬指數</th></tr>
+<tr><td>最差窗口</td><td class="pos best">+6.7%</td><td class="neg">−2.2%</td><td class="pos">+4.7%</td></tr>
+<tr><td>中位數</td><td class="pos best">+17.6%</td><td class="pos">+7.6%</td><td class="pos">+10.7%</td></tr>
+<tr><td>最佳窗口</td><td class="pos best">+28.0%</td><td class="pos">+18.9%</td><td class="pos">+22.5%</td></tr>
+</table></div>
+<p><strong>於全部 140 個窗口，本策略之十年年化報酬對等權基準與對加權報酬指數均為
+140 勝 0 敗</strong>；最差窗口(2007 年初、金融危機前高點附近起算)仍有年化 +6.7%
+(終值 1.92 倍)，而等權基準之最差窗口為虧損。對指數之年化超額：中位 +6.4pp、
+最高 +16.6pp、最低 +0.4pp；<strong>最新窗口(2016-10 起算)為 +0.6pp，
+係 140 個窗口中第 3 小</strong>。</p>
+<div class="note"><strong>「近十年幾乎打平」之歷史定位</strong>：最新窗口(2016-10 起算)
+對指數之超額 +0.6pp，為 140 個窗口中<strong>第 3 小</strong>——此非策略於本窗口失常
+(其 +22.7% 接近策略之歷史最佳窗口 +28.0%)，而係指數之 +22.1% 為其自 2003 年
+編製以來 165 個十年起點中<strong>第 3 高</strong>(中位僅 +9.2%)。換言之，前節之「幾乎打平」
+係與指數歷史頂端之十年相遇所致；以全部窗口衡量，本策略對兩把基準均為一致性領先。</div>
+<p class="small">兩項註記：① 窗口高度重疊，獨立觀測實質僅約兩組，應視為強證據而非保證；
+② 最新十年窗口與策略之研發樣本重疊，不具樣本外性質——獨立之樣本外證據見「可信度檢驗」節。</p>
+
+<div class="eyebrow">參考・延伸樣本</div>
+<h2>22 年延伸樣本(2005-03 ~ 2026-09)</h2>
+<p>十年窗口未包含 2008 年金融危機。以下以 22 年全樣本檢視最終規格，
+作為風險預算與長期行為之<strong>參考資料</strong>；主檢視仍以十年窗口為準。
+22 年期初 100 萬之終值：</p>
+<div class="tiles">
+  <div class="tile"><div class="n" style="color:var(--s-strat)">2,808 萬</div><div class="l">本策略(含波動度管理與成本)<br>年化 +16.7%</div></div>
+  <div class="tile"><div class="n" style="color:var(--s-tr)">1,692 萬</div><div class="l">加權報酬指數<br>年化 +14.0%</div></div>
+  <div class="tile"><div class="n" style="color:var(--s-ew)">717 萬</div><div class="l">等權含息基準<br>年化 +9.6%</div></div>
+</div>
+
+<div class="chart-box">
+  <div class="legend">
+    <span><span class="dot" style="background:var(--s-strat)"></span><b>本策略</b></span>
+    <span><span class="dot" style="background:var(--s-tr)"></span><b>加權報酬指數</b></span>
+    <span><span class="dot" style="background:var(--s-ew)"></span><b>等權含息基準</b></span>
+    <span style="margin-left:auto">2005-03 起・100 萬・對數座標</span>
+  </div>
+  <div class="chart-wrap" id="chartWrap"></div>
+</div>
+<p class="small">兩段值得檢視之區間：2008 年三者同步深度回撤(基準跌幅更深)；
+2024 年中起指數持續領先——策略獨自回撤，為 22 年樣本中最考驗持有紀律之區段。</p>
+
+<h3>22 年總表(2005-03 ~ 2026-09，259 個月)</h3>
+<div class="tbl"><table>
+<tr><th>指標</th><th>本策略</th><th>等權基準</th><th>加權報酬指數</th></tr>
+<tr><td>期末資產(100 萬起)</td><td class="best">2,808 萬</td><td>717 萬</td><td>1,692 萬</td></tr>
+<tr><td>年化報酬(CAGR)</td><td class="pos best">+16.7%</td><td class="pos">+9.6%</td><td class="pos">+14.0%</td></tr>
+<tr><td>最大回撤(maximum drawdown)</td><td class="neg">−57.6%</td><td class="neg">−67.3%</td><td class="neg best">−53.9%</td></tr>
+<tr><td>年化波動度</td><td>30.7%</td><td>24.5%</td><td class="best">18.9%</td></tr>
+<tr><td>Sharpe 比率(rf=1%)</td><td>0.62</td><td>0.46</td><td class="best">0.74</td></tr>
+<tr><td>Sortino 比率(rf=1%)</td><td class="best">1.08</td><td>0.65</td><td>1.06</td></tr>
+<tr><td>最長未創新高期間(underwater)</td><td>78 個月</td><td>148 個月</td><td class="best">37 個月</td></tr>
+<tr><td>最差單月</td><td class="neg">−24.9%</td><td class="neg">−24.1%</td><td class="neg best">−18.6%</td></tr>
+<tr><td>最佳單月</td><td class="pos best">+28.0%</td><td class="pos">+19.8%</td><td class="pos">+22.7%</td></tr>
+</table></div>
+
+
+<h3>行為特徵(22 年)</h3>
+<div class="tbl"><table>
+<tr><th>指標</th><th>數值</th></tr>
+<tr><td>單月獲利機率</td><td>58%</td></tr>
+<tr><td>單月超越等權基準機率</td><td>50%</td></tr>
+<tr><td>單月超越加權報酬指數機率</td><td>48%</td></tr>
+<tr><td>曆年超越等權基準</td><td>17/22 年</td></tr>
+<tr><td>曆年超越加權報酬指數</td><td>11/22 年</td></tr>
+<tr><td>平均曝險(十年口徑)</td><td>約 83%(區間 44%~100%；2008-11 曾為 0%)</td></tr>
+</table></div>
+<p>月頻層級之相對勝率與擲幣無異——<strong>本策略之優勢不來自「時常領先」，
+而來自獲利與虧損月份之幅度不對稱，經長期複利放大。</strong>以單月或單年績效
+評價本策略，均屬統計上無效之觀察窗口。</p>
+
+<div class="eyebrow">參考・逐年</div>
+<h2>逐年報酬：策略與雙基準對照</h2>
+<div class="tbl"><table>
+<tr><th>年</th><th>本策略</th><th>等權基準¹</th><th>加權報酬指數²</th></tr>
+<tr><td>2005*</td><td class="pos">+31.0%</td><td class="pos">+9.1%</td><td class="pos">+9.7%</td></tr>
+<tr><td>2006</td><td class="pos">+38.5%</td><td class="pos">+32.4%</td><td class="pos">+24.4%</td></tr>
+<tr><td>2007</td><td class="pos">+1.3%</td><td class="pos">+0.4%</td><td class="pos">+12.5%</td></tr>
+<tr><td>2008</td><td class="neg">-33.0%</td><td class="neg">-52.7%</td><td class="neg">-43.1%</td></tr>
+<tr><td>2009</td><td class="pos">+68.3%</td><td class="pos">+100.1%</td><td class="pos">+83.3%</td></tr>
+<tr><td>2010</td><td class="pos">+12.5%</td><td class="pos">+6.4%</td><td class="pos">+13.6%</td></tr>
+<tr><td>2011</td><td class="neg">-29.3%</td><td class="neg">-31.3%</td><td class="neg">-18.0%</td></tr>
+<tr><td>2012</td><td class="neg">-0.8%</td><td class="pos">+9.0%</td><td class="pos">+12.9%</td></tr>
+<tr><td>2013</td><td class="pos">+48.3%</td><td class="pos">+16.2%</td><td class="pos">+15.1%</td></tr>
+<tr><td>2014</td><td class="pos">+13.7%</td><td class="pos">+6.1%</td><td class="pos">+11.4%</td></tr>
+<tr><td>2015</td><td class="pos">+10.4%</td><td class="neg">-6.1%</td><td class="neg">-6.9%</td></tr>
+<tr><td>2016</td><td class="pos">+14.2%</td><td class="pos">+2.4%</td><td class="pos">+15.6%</td></tr>
+<tr><td>2017</td><td class="pos">+72.6%</td><td class="pos">+27.2%</td><td class="pos">+19.5%</td></tr>
+<tr><td>2018</td><td class="neg">-11.4%</td><td class="neg">-13.1%</td><td class="neg">-4.8%</td></tr>
+<tr><td>2019</td><td class="pos">+41.5%</td><td class="pos">+34.2%</td><td class="pos">+28.9%</td></tr>
+<tr><td>2020</td><td class="pos">+54.3%</td><td class="pos">+29.4%</td><td class="pos">+27.1%</td></tr>
+<tr><td>2021</td><td class="pos">+51.8%</td><td class="pos">+35.3%</td><td class="pos">+27.1%</td></tr>
+<tr><td>2022</td><td class="neg">-10.2%</td><td class="neg">-24.8%</td><td class="neg">-18.7%</td></tr>
+<tr><td>2023</td><td class="pos">+21.6%</td><td class="pos">+41.2%</td><td class="pos">+31.5%</td></tr>
+<tr><td>2024</td><td class="pos">+13.4%</td><td class="pos">+10.0%</td><td class="pos">+31.7%</td></tr>
+<tr><td>2025</td><td class="neg">-12.0%</td><td class="pos">+12.3%</td><td class="pos">+29.5%</td></tr>
+<tr><td>2026*</td><td class="pos">+46.5%</td><td class="pos">+62.2%</td><td class="pos">+68.2%</td></tr>
+</table></div>
+<p class="small">* 2005 年自 3 月起算；2026 年至 9 月止。
+¹ 與策略相同流動性條件(日均成交值 ≥1 億)之全體個股等權含息組合，不套用趨勢篩選。
+² 臺灣證券交易所發行量加權股價報酬指數(含息)。</p>
+<p><strong>單年勝率：對等權基準 17/22，對加權報酬指數 11/22。</strong>
+累積優勢之來源並非逐年穩定領先，而係：領先年度之幅度大
+(2017：+72.6%，同年等權基準 +27.2%、指數 +19.5%)、
+落後年度之下方受控(2008：−33.0%，同年等權基準 −52.7%、指數 −43.1%)。
+換言之，<strong>單一年度落後於任一基準均屬歷史常態，不構成訊號失效之證據。</strong></p>
+<div class="note"><strong>曆年報酬會低估路徑風險</strong>：−47.4% 之最大回撤因跨越年度邊界，
+於曆年表僅呈現為「2024 +13.4%、2025 −12.0%」。風險承受度之評估應以
+最大回撤與未創新高期間為準，曆年報酬僅供年度結算參考。</div>
+
+<div class="eyebrow">參考・風險預算</div>
+<h2>風險預算：22 年壓力測試</h2>
+
+<h3>最差曆年(三方對照，含當年平均曝險)</h3>
+<div class="tbl"><table>
+<tr><th>年份</th><th>本策略</th><th>等權基準</th><th>加權報酬指數</th><th>曝險均值</th></tr>
+<tr><td>2008 全球金融危機</td><td class="neg best">−33.0%</td><td class="neg">−52.7%</td><td class="neg">−43.1%</td><td>50%</td></tr>
+<tr><td>2011 歐債危機</td><td class="neg">−29.3%</td><td class="neg">−31.3%</td><td class="neg best">−18.0%</td><td>100%</td></tr>
+<tr><td>2025 風格輪動</td><td class="neg">−12.0%</td><td class="pos">+12.3%</td><td class="pos best">+29.5%</td><td>89%</td></tr>
+<tr><td>2018</td><td class="neg">−11.4%</td><td class="neg">−13.1%</td><td class="neg best">−4.8%</td><td>96%</td></tr>
+<tr><td>2022</td><td class="neg best">−10.2%</td><td class="neg">−24.8%</td><td class="neg">−18.7%</td><td>66%</td></tr>
+</table></div>
+<p>最差五個曆年中，三個(2008、2018、2022)相對等權基準為顯著防禦
+——2008 年適格池收縮與波動度管理疊加，曝險一度降至 8%、乃至完全空手，
+全年平均曝險 50%。<strong>2011 年為重要之機制邊界案例</strong>：漸進式下跌之單月跌幅
+與波動度均不高、適格池亦未收縮——兩層風險機制全程未獲觸發訊號，全曝險承受 −29.3%。
+波動度管理對「急跌」有效、對「陰跌」無效；適格池收縮防禦「系統性崩壞」、
+不防禦「風格輪動」。<strong>兩層機制之守備範圍互補，但均非全天候。</strong></p>
+
+<h3>兩場最大回撤之型態對照</h3>
+<div class="tbl"><table>
+<tr><th></th><th>2008 系統性危機</th><th>2024–25 風格輪動</th></tr>
+<tr><td>本策略</td><td class="neg">−57.6%(22 年最深)</td><td class="neg">−47.4%</td></tr>
+<tr><td>等權基準</td><td class="neg">−67.3%</td><td class="neg">−18.9%</td></tr>
+<tr><td>加權報酬指數</td><td class="neg">−53.9%</td><td class="neg">−13.8%</td></tr>
+<tr><td>型態</td><td>系統性崩盤，基準跌幅更深</td><td>市場續漲而策略獨自回撤</td></tr>
+</table></div>
+<p class="small">2026-10 勘誤：本表 2024–25 欄之基準數值，初版誤植為各基準之十年
+最大回撤(−31.9%／−25.6%)，現更正為同期間(2024-01 起)之實際回撤。</p>
+<p>前者為「相對防禦」情境；後者無機制可防，為最考驗持有紀律之情境。
+最差單月 −24.9%(2026-07)發生當月，等權基準 −18.1%、指數 −5.9%；
+該月全曝險口徑為 −38.5%，波動度管理已預先將曝險壓至約六成半，實際損失因此縮減。</p>
+
+<h3>時間維度之風險</h3>
+<div class="tiles">
+  <div class="tile"><div class="n">78 個月</div><div class="l">本策略最長未創新高期間<br>(全曝險口徑 82 個月)</div></div>
+  <div class="tile"><div class="n">148 個月</div><div class="l">等權基準最長未創新高期間<br>逾十二年</div></div>
+  <div class="tile"><div class="n">37 個月</div><div class="l">加權報酬指數最長未創新高期間<br>權值集中，修復最快</div></div>
+</div>
+<p class="small">指數修復速度快係權值集中之結構性特徵；<strong>本策略之未創新高期間顯著
+長於指數化投資</strong>，此為作者於實驗啟動前已簽收之代價。連續性統計：22 年間最長連續虧損
+5 個月(僅一次，未曾出現 6 個月)；最長連續獲利 8 個月；最強之六個月區間：實際口徑 +98%、
+全曝險口徑 +152%(皆止於 2026-05)。</p>
+<p class="small">擇時檢驗：月報酬序列對過往連續虧損長度不具顯著之條件相依性
+(前月虧損後之次月勝率 57%，無條件勝率 58%)；等回撤深度進場、等連跌進場等規則
+之後續表現均不優於立即進場——<strong>不存在可利用之進場擇時訊號</strong>。</p>
+
+<h3>波動度目標化之定位：保險，而非增益</h3>
+<p>22 年口徑：全曝險組合期末 3,949 萬，含波動度目標化後 2,808 萬
+——<strong>成本約 1.9pp/年</strong>；所換得者：最差單月 −38.5% → −24.9%、
+最大回撤 −67.7% → −57.6%、Sortino 1.05 → 1.08。此與 Barroso &amp;
+Santa-Clara(2015)之文獻定位一致：<strong>以部分長期報酬購買下方保護</strong>，
+屬保險費性質，而非報酬增益機制。已知代價：重大虧損月份後，曝險上限將壓低約一年，
+對 V 型反彈之參與因此不完整。</p>
+
+<div class="eyebrow">可信度</div>
+<h2>三項可信度檢驗</h2>
+<ul>
+<li><strong>樣本外檢定(out-of-sample test)</strong>：核心訊號以近十年資料研發定型後
+<strong>凍結</strong>，再以 2004~2016 十二年從未接觸之資料(含 2008 年金融危機)檢定：
+年化 +11.1%，同期等權基準 +2.2%，<strong>超額 +8.9pp/年</strong>
+——與全樣本(+7.2pp)及滾動窗口中位(+10.8pp)量級一致，
+呈真因子之樣本外形態，而非過度配適(overfitting)之崩解形態。</li>
+<li><strong>反例與邊界檢驗</strong>：整套規則移植中國 A 股為<strong>顯著負報酬</strong>
+(該市場為反轉主導，動能因子失效)——真實之因子暴露本應隨市場結構而異；
+美股動能為正(與近百年文獻一致)，惟該樣本之存活者偏誤無法修復，
+故掛星號、不入核心結論，且趨勢適格元件於美股無增益。
+各元件之效益邊界清晰，恰為其非過度配適之佐證。<strong>本策略為台股在地實證，非萬用公式。</strong></li>
+<li><strong>以結果反推之覆蓋檢驗</strong>：台股 22 年間於 126 個交易日內上漲逾一倍之個股
+共 1,657 檔，其中 82% 於起漲前六個月內已通過趨勢適格條件，放寬觀察窗則達 97%
+——該篩選對中期主升段之覆蓋近乎完整。惟覆蓋率高、精確率低
+(通過者之多數並未大漲)，故僅作為適格門檻，而非進場訊號。</li>
+</ul>
+
+<div class="eyebrow">風險揭露</div>
+<h2>作者已簽收之風險全貌</h2>
+<div class="note">含全部風險管理機制後，本策略之歷史路徑仍包含：
+<strong>最差單月 −24.9%、最差曆年 −33.0%、最大回撤 −57.6%、最長 78 個月未創新高</strong>
+(同期等權基準 148 個月，惟加權報酬指數僅 37 個月)、最長連續虧損 5 個月，
+以及風格輪動年度中「基準上漲而策略虧損」之情形(2023/2025/2026 對指數連續落後)。
+<br><br>唯一之停止條款：<strong>滾動相對績效觸及預先承諾之檢核線 → 停止投入、重新驗證，
+不得加碼攤平</strong>(閾值不揭露)。單月績效不佳僅記錄、不行動；
+若出現超出歷史分布之情形(如 6 個月連續虧損)，則與檢核線一併檢視。</div>
+
+<div class="eyebrow">底座</div>
+<h2>資料基礎與驗證</h2>
+<p class="small">自建資料庫，合計逾 4,900 萬列日頻紀錄，均來自官方或原始來源：
+台股 2004-02 迄今 790 萬列(證交所/櫃買中心每日全市場檔，2,365 檔)、
+台股官方指數 2003 迄今(加權指數+加權報酬指數)、美股 890 萬列(Nasdaq，分割已調整)、
+中國 A 股 1,830 萬列(原始價與後復權雙軌)。</p>
+<ol class="vlist">
+<li><strong>存活者偏誤(survivorship bias)之處理</strong>：台股以逐日全市場檔案
+自然收錄期間內下市個股(含 2016 年前下市之 231 檔)；美股來源無法回補下市個股，
+故所有美股數字均掛星號、不用於任何核心結論。</li>
+<li><strong>股利調整</strong>：台股除權息事件 31,343 筆，逐筆以交易所公告參考價計算
+調整因子；以高股利個股抽核確認機制正確(如中鋼：未調整 22 年 −35%，調整後 +181%)。
+所有報酬數字均為含息總報酬。</li>
+<li><strong>雙價格序列制</strong>：訊號計算採用原始價格(與市場圖面一致，
+歷史不因後續除權息而改寫)；報酬計算採用調整後價格(真實持有損益)。</li>
+<li><strong>對外部資料之交叉驗證</strong>：A 股資料以可查證之歷史紀錄驗收
+(個股歷史高點與單日漲停家數均與史實一致)；台股 2026 年動能排名前 25 名
+與市售行情軟體逐檔比對，完全一致；等權基準另經純 SQL 獨立驗算吻合。</li>
+<li><strong>執行可行性建模</strong>：選股於月底收盤後、成交於次月首個交易日開盤
+(實際可執行之時點)；計入交易成本；考慮零股交易與漲跌幅限制。</li>
+<li><strong>勘誤文化</strong>：研究過程中發現之口徑錯誤一律公開修正並留存紀錄，
+不靜默修改；全部計算收斂至單一權威實作，文件數字均可由程式重生複查。</li>
+</ol>
+
+<div class="eyebrow">口徑</div>
+<h2>計算口徑與保守調整</h2>
+<p class="small">回測記帳採「每月重新等權」之簡化口徑；實務執行容許權重漂移
+(僅換股時將新進部位建立至目標權重，續持部位不再平衡)。兩種口徑經含成本對測結果相當；
+簡化口徑因未計微調成本而<strong>偏樂觀約一成</strong>——保守預期宜以
+<strong>十年口徑年化約 20%、22 年口徑年化約 15%</strong> 為準。
+其他限制：單一歷史路徑；2026 年尚未結束；未計滑價
+(惟流動性門檻 ≥1 億、持股分散，影響有限)。</p>
+<p class="small"><strong>具體參數(趨勢條件之定義、持股檔數與選股門檻、緩衝值、
+波動度目標與估計窗口、檢核閾值)為作者私有，不對外揭露。</strong></p>
+<div class="foot">資料截至 2026-09-30・本表 2026-10 刷新。執行測試期(2026-09 起)之實盤對帳
+逐月更新於「6M動能月誌」。<br>本文件僅為個人研究紀錄之公開摘要，不構成任何投資建議。</div>
+</div>
+
+<script>
+(function(){
+  var D = {"dates": ["2005-03", "2005-04", "2005-05", "2005-06", "2005-07", "2005-08", "2005-09", "2005-10", "2005-11", "2005-12", "2006-01", "2006-02", "2006-03", "2006-04", "2006-05", "2006-06", "2006-07", "2006-08", "2006-09", "2006-10", "2006-11", "2006-12", "2007-01", "2007-02", "2007-03", "2007-04", "2007-05", "2007-06", "2007-07", "2007-08", "2007-09", "2007-10", "2007-11", "2007-12", "2008-01", "2008-02", "2008-03", "2008-04", "2008-05", "2008-06", "2008-07", "2008-08", "2008-09", "2008-10", "2008-11", "2008-12", "2009-01", "2009-02", "2009-03", "2009-04", "2009-05", "2009-06", "2009-07", "2009-08", "2009-09", "2009-10", "2009-11", "2009-12", "2010-01", "2010-02", "2010-03", "2010-04", "2010-05", "2010-06", "2010-07", "2010-08", "2010-09", "2010-10", "2010-11", "2010-12", "2011-01", "2011-02", "2011-03", "2011-04", "2011-05", "2011-06", "2011-07", "2011-08", "2011-09", "2011-10", "2011-11", "2011-12", "2012-01", "2012-02", "2012-03", "2012-04", "2012-05", "2012-06", "2012-07", "2012-08", "2012-09", "2012-10", "2012-11", "2012-12", "2013-01", "2013-02", "2013-03", "2013-04", "2013-05", "2013-06", "2013-07", "2013-08", "2013-09", "2013-10", "2013-11", "2013-12", "2014-01", "2014-02", "2014-03", "2014-04", "2014-05", "2014-06", "2014-07", "2014-08", "2014-09", "2014-10", "2014-11", "2014-12", "2015-01", "2015-02", "2015-03", "2015-04", "2015-05", "2015-06", "2015-07", "2015-08", "2015-09", "2015-10", "2015-11", "2015-12", "2016-01", "2016-02", "2016-03", "2016-04", "2016-05", "2016-06", "2016-07", "2016-08", "2016-09", "2016-10", "2016-11", "2016-12", "2017-01", "2017-02", "2017-03", "2017-04", "2017-05", "2017-06", "2017-07", "2017-08", "2017-09", "2017-10", "2017-11", "2017-12", "2018-01", "2018-02", "2018-03", "2018-04", "2018-05", "2018-06", "2018-07", "2018-08", "2018-09", "2018-10", "2018-11", "2018-12", "2019-01", "2019-02", "2019-03", "2019-04", "2019-05", "2019-06", "2019-07", "2019-08", "2019-09", "2019-10", "2019-11", "2019-12", "2020-01", "2020-02", "2020-03", "2020-04", "2020-05", "2020-06", "2020-07", "2020-08", "2020-09", "2020-10", "2020-11", "2020-12", "2021-01", "2021-02", "2021-03", "2021-04", "2021-05", "2021-06", "2021-07", "2021-08", "2021-09", "2021-10", "2021-11", "2021-12", "2022-01", "2022-02", "2022-03", "2022-04", "2022-05", "2022-06", "2022-07", "2022-08", "2022-09", "2022-10", "2022-11", "2022-12", "2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12", "2024-01", "2024-02", "2024-03", "2024-04", "2024-05", "2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07", "2026-08", "2026-09"], "strat": [102.0, 97.7, 102.5, 105.7, 123.7, 108.9, 111.1, 103.3, 114.2, 131.0, 137.7, 123.2, 135.6, 150.1, 143.3, 133.4, 133.7, 125.6, 135.0, 150.0, 177.1, 181.4, 169.9, 167.1, 183.9, 170.6, 187.5, 205.6, 262.0, 223.6, 228.8, 214.3, 187.0, 183.8, 173.8, 185.9, 193.9, 196.1, 190.1, 165.1, 159.9, 160.3, 126.9, 125.3, 125.3, 123.2, 111.1, 118.3, 130.4, 153.1, 185.8, 166.6, 181.2, 174.9, 182.9, 171.8, 187.4, 207.4, 188.4, 193.7, 205.8, 205.1, 195.6, 191.2, 199.1, 191.5, 206.0, 210.5, 219.1, 233.3, 226.5, 225.1, 230.7, 222.7, 231.1, 210.5, 235.1, 208.4, 174.0, 180.2, 173.3, 164.9, 176.8, 192.7, 185.1, 169.3, 161.8, 158.2, 150.7, 154.6, 158.7, 148.5, 157.8, 163.5, 173.3, 189.3, 189.8, 188.6, 207.6, 203.6, 201.0, 200.3, 208.4, 224.2, 229.7, 242.5, 226.8, 262.9, 272.5, 256.0, 294.4, 319.6, 284.1, 290.1, 272.4, 247.0, 252.3, 275.7, 285.2, 288.7, 319.5, 347.7, 373.0, 386.9, 303.0, 284.2, 297.1, 296.5, 322.4, 304.4, 316.2, 335.3, 335.8, 312.8, 324.1, 325.9, 338.8, 364.8, 363.2, 354.1, 361.6, 347.6, 372.8, 415.4, 443.2, 449.4, 432.0, 437.2, 509.9, 598.5, 586.5, 658.1, 651.2, 599.9, 642.7, 633.9, 704.2, 679.5, 780.2, 836.7, 752.6, 682.6, 612.8, 508.2, 540.7, 531.5, 575.0, 600.0, 614.6, 615.2, 571.8, 619.1, 630.7, 669.4, 679.7, 733.3, 748.3, 751.9, 686.8, 669.1, 569.2, 717.2, 905.7, 995.1, 966.0, 1110.5, 1114.2, 1123.8, 1131.2, 1160.4, 1088.5, 1268.2, 1435.5, 1501.8, 1522.8, 1944.8, 1792.1, 1751.5, 1650.3, 1664.8, 1654.2, 1761.0, 1581.8, 1606.6, 1678.0, 1603.6, 1594.4, 1486.0, 1584.6, 1824.0, 1530.7, 1458.1, 1679.8, 1581.4, 1647.9, 1765.7, 1787.4, 1812.9, 1860.6, 1994.3, 1959.3, 1885.7, 1871.2, 1703.3, 1986.1, 1923.1, 2185.9, 2316.8, 2189.1, 2059.1, 2217.8, 2312.5, 2486.3, 2664.1, 2193.6, 2095.7, 2086.3, 2180.0, 2005.9, 1967.7, 1582.4, 1650.1, 1449.8, 1533.5, 1400.3, 1684.7, 1673.6, 1663.2, 1645.2, 1917.6, 2159.4, 2250.6, 2373.3, 3038.4, 3264.5, 3163.2, 2376.4, 2739.2, 2808.49], "ew": [96.9, 92.0, 95.9, 100.3, 105.0, 97.4, 99.4, 91.8, 99.9, 109.1, 108.9, 105.7, 111.4, 122.4, 119.0, 114.3, 113.6, 115.8, 121.0, 123.7, 137.7, 144.5, 141.2, 141.4, 150.9, 147.7, 155.1, 169.2, 189.9, 173.2, 181.0, 174.4, 149.1, 145.1, 120.7, 134.9, 143.9, 151.4, 141.8, 115.6, 111.1, 113.7, 86.4, 70.3, 62.3, 68.6, 62.2, 67.8, 79.7, 93.3, 111.8, 100.2, 114.9, 108.2, 120.4, 113.4, 123.9, 137.2, 122.9, 120.1, 131.6, 130.8, 118.7, 118.3, 129.1, 126.3, 138.2, 137.4, 139.3, 146.0, 148.6, 139.8, 137.9, 138.2, 138.8, 134.0, 135.6, 118.4, 105.6, 111.2, 103.1, 100.4, 112.4, 122.7, 116.2, 108.3, 106.5, 107.8, 106.1, 109.6, 112.8, 99.0, 106.7, 109.4, 111.3, 113.6, 114.4, 115.4, 117.5, 113.3, 117.2, 117.9, 120.3, 123.1, 122.2, 127.2, 121.6, 130.9, 134.6, 130.1, 138.1, 142.5, 136.2, 140.2, 133.6, 127.1, 126.1, 134.9, 135.4, 138.7, 138.9, 139.9, 139.6, 135.5, 120.2, 112.6, 120.5, 127.4, 128.1, 126.6, 124.4, 127.8, 128.7, 121.9, 125.3, 126.8, 133.0, 135.4, 136.6, 132.2, 129.6, 129.7, 134.2, 141.6, 142.5, 141.1, 140.8, 144.4, 151.3, 159.7, 158.6, 165.8, 167.6, 165.0, 171.8, 164.1, 170.7, 162.6, 174.5, 176.8, 176.4, 170.0, 158.0, 131.9, 150.3, 143.4, 152.1, 159.8, 165.1, 165.8, 153.1, 164.9, 169.6, 172.8, 175.0, 183.2, 184.3, 192.4, 173.0, 171.7, 146.9, 173.0, 189.0, 202.4, 211.0, 218.0, 211.8, 215.8, 237.7, 249.0, 237.6, 265.8, 287.3, 308.6, 286.4, 319.1, 319.8, 309.8, 294.5, 306.9, 316.4, 337.0, 303.9, 309.5, 311.7, 288.0, 291.1, 256.8, 266.0, 277.5, 239.2, 229.5, 270.1, 253.4, 272.9, 285.7, 298.3, 300.5, 312.2, 331.6, 341.7, 328.7, 331.2, 317.3, 353.4, 357.9, 358.4, 385.0, 387.1, 387.7, 409.2, 423.9, 415.4, 423.0, 412.8, 393.1, 395.0, 393.8, 376.1, 398.5, 356.8, 343.9, 351.2, 364.4, 370.9, 418.7, 417.0, 425.8, 421.7, 442.2, 472.9, 503.7, 506.3, 603.0, 703.9, 714.3, 584.9, 691.9, 717.1], "tr": [96.7, 93.7, 96.9, 101.2, 104.3, 100.8, 102.5, 96.6, 103.9, 109.7, 109.5, 109.9, 110.8, 120.2, 114.7, 113.1, 110.8, 115.3, 120.1, 122.5, 132.1, 136.5, 134.4, 137.9, 137.6, 137.4, 142.2, 156.1, 166.0, 162.0, 171.1, 175.4, 155.0, 153.6, 135.8, 151.9, 154.8, 161.1, 155.6, 136.6, 131.4, 133.3, 108.5, 92.8, 85.0, 87.4, 80.9, 86.8, 99.2, 114.1, 131.2, 122.6, 137.2, 133.6, 147.0, 143.7, 148.5, 160.3, 149.6, 145.6, 155.1, 156.7, 144.4, 143.6, 155.8, 154.5, 167.2, 168.2, 169.9, 182.1, 185.6, 174.5, 176.2, 182.8, 182.4, 176.5, 180.7, 163.3, 152.6, 160.2, 145.8, 149.4, 158.8, 171.5, 167.5, 158.4, 154.2, 154.3, 157.6, 162.0, 169.0, 157.0, 166.1, 168.7, 172.0, 173.0, 173.5, 177.3, 180.9, 176.8, 181.2, 180.7, 184.3, 190.6, 189.6, 194.2, 190.9, 194.9, 199.6, 198.3, 204.7, 212.5, 214.4, 219.1, 208.4, 208.6, 213.6, 216.3, 217.6, 223.7, 222.8, 228.3, 225.5, 218.4, 206.7, 196.8, 197.7, 206.7, 201.1, 201.5, 196.8, 203.2, 211.3, 202.4, 206.3, 211.7, 223.2, 227.4, 230.7, 233.8, 232.6, 232.9, 237.8, 245.4, 246.9, 248.5, 252.7, 264.1, 270.2, 276.6, 271.6, 282.3, 276.2, 278.4, 290.4, 282.9, 285.6, 278.8, 284.4, 286.1, 298.5, 301.0, 299.7, 266.9, 269.3, 264.9, 270.5, 282.9, 289.8, 298.7, 285.9, 295.2, 304.4, 300.9, 307.7, 322.8, 326.5, 341.5, 327.2, 321.5, 277.1, 313.8, 312.4, 333.6, 369.7, 369.5, 368.3, 369.2, 403.8, 434.2, 446.1, 470.2, 484.9, 518.7, 504.0, 525.7, 515.3, 527.1, 512.0, 513.7, 527.0, 551.7, 535.2, 534.6, 536.9, 503.8, 510.3, 457.3, 471.4, 477.0, 425.3, 410.3, 471.4, 448.6, 484.4, 492.0, 504.7, 496.0, 527.9, 546.3, 559.5, 545.2, 537.1, 525.6, 572.7, 589.9, 588.9, 624.4, 669.5, 673.4, 699.1, 764.0, 743.9, 748.5, 748.5, 768.6, 749.8, 777.0, 794.1, 778.2, 700.2, 684.8, 722.5, 760.1, 812.7, 838.6, 895.6, 979.3, 958.2, 1006.1, 1114.3, 1230.7, 1104.6, 1355.6, 1557.9, 1612.7, 1517.4, 1625.7, 1692.2]};
+  var W = 720, H = 380, L = 46, R = 92, T = 18, B = 30;
+  var n = D.dates.length;
+  var yticks = [50,100,200,400,800,1600,3200];
+  var ymin = Math.log10(55), ymax = Math.log10(3400);
+  function X(i){ return L + (W-L-R) * i/(n-1); }
+  function Y(v){ return T + (H-T-B) * (1 - (Math.log10(v)-ymin)/(ymax-ymin)); }
+  function path(a){ var s=''; for(var i=0;i<n;i++){ s += (i?'L':'M') + X(i).toFixed(1) + ' ' + Y(a[i]).toFixed(1) + ' '; } return s; }
+  var xticks = [];
+  for(var i=0;i<n;i++){ var y=+D.dates[i].slice(0,4), m=D.dates[i].slice(5); if(m==='01' && y%3===0) xticks.push([i,y]); }
+  var annos = [];
+  for(var i=0;i<n;i++){ if(D.dates[i]==='2008-11') annos.push([i,'2008 金融危機']); if(D.dates[i]==='2026-07') annos.push([i,'2026-07']); }
+  var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="22 年財富曲線：本策略、加權報酬指數、等權含息基準(對數座標)">';
+  svg += '<g class="grid">';
+  yticks.forEach(function(v){ svg += '<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(v)+'" y2="'+Y(v)+'"/>'; });
+  svg += '</g><g class="axis">';
+  yticks.forEach(function(v){ svg += '<text x="'+(L-6)+'" y="'+(Y(v)+3.5)+'" text-anchor="end">'+v.toLocaleString()+'</text>'; });
+  xticks.forEach(function(t){ svg += '<text x="'+X(t[0])+'" y="'+(H-B+16)+'" text-anchor="middle">'+t[1]+'</text>'; });
+  svg += '<text x="'+(L-6)+'" y="'+(T-6)+'" text-anchor="end">萬</text>';
+  svg += '</g><g class="anno">';
+  annos.forEach(function(a){
+    svg += '<line x1="'+X(a[0])+'" x2="'+X(a[0])+'" y1="'+T+'" y2="'+(H-B)+'"/>';
+    svg += '<text x="'+(X(a[0])+4)+'" y="'+(T+10)+'">'+a[1]+'</text>';
+  });
+  svg += '</g><g class="series">';
+  svg += '<path d="'+path(D.ew)+'" style="stroke:var(--s-ew)"/>';
+  svg += '<path d="'+path(D.tr)+'" style="stroke:var(--s-tr)"/>';
+  svg += '<path d="'+path(D.strat)+'" style="stroke:var(--s-strat)"/>';
+  svg += '</g>';
+  function endlab(a, name, dy){
+    var v = a[n-1];
+    return '<text class="endlab" x="'+(W-R+8)+'" y="'+(Y(v)+dy)+'" style="fill:var(--s-'+name+')">'+
+      Math.round(v).toLocaleString()+'萬</text>';
+  }
+  svg += endlab(D.strat,'strat',4) + endlab(D.tr,'tr',4) + endlab(D.ew,'ew',4);
+  svg += '<line class="xh" id="xh" y1="'+T+'" y2="'+(H-B)+'" x1="0" x2="0"/>';
+  ['strat','tr','ew'].forEach(function(k){
+    svg += '<circle id="c-'+k+'" r="3.5" style="fill:var(--s-'+k+');opacity:0"/>';
+  });
+  svg += '<rect id="ov" x="'+L+'" y="'+T+'" width="'+(W-L-R)+'" height="'+(H-T-B)+'" fill="transparent"/>';
+  svg += '</svg>';
+  var wrap = document.getElementById('chartWrap');
+  wrap.innerHTML = svg + '<div class="tip" id="tip"></div>';
+  var tip = document.getElementById('tip'), xh = document.getElementById('xh');
+  var ov = document.getElementById('ov'), svgEl = wrap.querySelector('svg');
+  var names = {strat:'本策略', tr:'加權報酬指數', ew:'等權含息基準'};
+  function move(ev){
+    var pt = svgEl.createSVGPoint();
+    var e = ev.touches ? ev.touches[0] : ev;
+    pt.x = e.clientX; pt.y = e.clientY;
+    var p = pt.matrixTransform(svgEl.getScreenCTM().inverse());
+    var i = Math.round((p.x - L)/(W-L-R)*(n-1));
+    i = Math.max(0, Math.min(n-1, i));
+    xh.setAttribute('x1', X(i)); xh.setAttribute('x2', X(i)); xh.style.opacity = 1;
+    var html = '<div class="d">'+D.dates[i]+'</div>';
+    [['strat',D.strat],['tr',D.tr],['ew',D.ew]].forEach(function(s){
+      var c = document.getElementById('c-'+s[0]);
+      c.setAttribute('cx', X(i)); c.setAttribute('cy', Y(s[1][i])); c.style.opacity = 1;
+      html += '<div><span class="dot" style="background:var(--s-'+s[0]+')"></span>'+
+        names[s[0]]+' <span class="v">'+Math.round(s[1][i]).toLocaleString()+'萬</span></div>';
+    });
+    tip.innerHTML = html; tip.style.opacity = 1;
+    var r = wrap.getBoundingClientRect();
+    var lx = (e.clientX - r.left) + 14;
+    if (lx > r.width - 180) lx = (e.clientX - r.left) - 178;
+    tip.style.left = lx + 'px';
+    tip.style.top = Math.max(0, e.clientY - r.top - 30) + 'px';
+  }
+  function out(){ tip.style.opacity = 0; xh.style.opacity = 0;
+    ['strat','tr','ew'].forEach(function(k){ document.getElementById('c-'+k).style.opacity = 0; }); }
+  ov.addEventListener('mousemove', move);
+  ov.addEventListener('touchstart', move, {passive:true});
+  ov.addEventListener('touchmove', move, {passive:true});
+  ov.addEventListener('mouseleave', out);
+})();
+</script>
+
+<script>
+(function(){
+  var D = {"starts": ["2005-03", "2005-04", "2005-05", "2005-06", "2005-07", "2005-08", "2005-09", "2005-10", "2005-11", "2005-12", "2006-01", "2006-02", "2006-03", "2006-04", "2006-05", "2006-06", "2006-07", "2006-08", "2006-09", "2006-10", "2006-11", "2006-12", "2007-01", "2007-02", "2007-03", "2007-04", "2007-05", "2007-06", "2007-07", "2007-08", "2007-09", "2007-10", "2007-11", "2007-12", "2008-01", "2008-02", "2008-03", "2008-04", "2008-05", "2008-06", "2008-07", "2008-08", "2008-09", "2008-10", "2008-11", "2008-12", "2009-01", "2009-02", "2009-03", "2009-04", "2009-05", "2009-06", "2009-07", "2009-08", "2009-09", "2009-10", "2009-11", "2009-12", "2010-01", "2010-02", "2010-03", "2010-04", "2010-05", "2010-06", "2010-07", "2010-08", "2010-09", "2010-10", "2010-11", "2010-12", "2011-01", "2011-02", "2011-03", "2011-04", "2011-05", "2011-06", "2011-07", "2011-08", "2011-09", "2011-10", "2011-11", "2011-12", "2012-01", "2012-02", "2012-03", "2012-04", "2012-05", "2012-06", "2012-07", "2012-08", "2012-09", "2012-10", "2012-11", "2012-12", "2013-01", "2013-02", "2013-03", "2013-04", "2013-05", "2013-06", "2013-07", "2013-08", "2013-09", "2013-10", "2013-11", "2013-12", "2014-01", "2014-02", "2014-03", "2014-04", "2014-05", "2014-06", "2014-07", "2014-08", "2014-09", "2014-10", "2014-11", "2014-12", "2015-01", "2015-02", "2015-03", "2015-04", "2015-05", "2015-06", "2015-07", "2015-08", "2015-09", "2015-10", "2015-11", "2015-12", "2016-01", "2016-02", "2016-03", "2016-04", "2016-05", "2016-06", "2016-07", "2016-08", "2016-09", "2016-10"], "strat": [11.19, 12.09, 13.54, 13.79, 13.85, 9.37, 10.07, 10.34, 11.12, 10.94, 8.8, 8.67, 10.53, 9.49, 7.62, 8.5, 9.34, 9.74, 11.25, 10.4, 8.97, 7.4, 6.72, 8.18, 9.53, 9.19, 10.17, 8.7, 7.84, 6.88, 10.35, 9.87, 11.88, 13.29, 12.56, 13.97, 13.05, 13.77, 13.23, 15.16, 17.62, 16.75, 15.59, 17.05, 15.03, 15.74, 15.74, 17.87, 17.63, 16.77, 14.92, 11.9, 14.03, 13.28, 14.37, 14.03, 15.62, 14.85, 13.75, 13.81, 13.2, 10.71, 13.34, 16.56, 17.93, 17.11, 19.22, 18.39, 18.24, 17.84, 17.4, 17.0, 18.87, 20.06, 21.03, 20.75, 24.9, 22.52, 23.72, 25.23, 24.9, 25.31, 26.72, 24.5, 23.62, 24.67, 25.21, 25.71, 25.11, 26.53, 28.0, 25.44, 25.66, 26.68, 25.47, 25.26, 25.02, 25.14, 25.4, 24.52, 25.63, 25.57, 25.13, 24.55, 22.48, 24.08, 23.01, 25.43, 24.31, 23.17, 23.18, 22.38, 21.88, 24.22, 24.82, 23.19, 23.84, 23.52, 22.97, 21.54, 21.16, 17.35, 16.85, 14.54, 14.77, 16.54, 19.48, 18.87, 18.82, 17.7, 20.21, 21.18, 20.97, 21.6, 25.53, 25.98, 25.52, 21.51, 22.34, 22.7], "ew": [3.32, 3.67, 4.28, 3.82, 3.06, 1.36, 1.47, 1.95, 3.34, 2.52, 1.5, 1.34, 1.91, 1.45, -0.05, 0.51, 1.04, 1.59, 1.58, 1.22, 0.67, -0.61, -1.08, -0.51, 0.01, -0.58, -0.46, -0.97, -1.57, -2.25, -0.81, -1.31, -0.5, 1.18, 1.29, 3.59, 1.98, 1.73, 0.72, 2.1, 4.34, 4.73, 4.1, 6.23, 6.49, 9.2, 7.66, 9.36, 8.95, 7.56, 5.92, 3.2, 5.11, 3.97, 4.79, 3.81, 4.92, 4.05, 3.44, 3.48, 3.64, 1.11, 2.84, 4.76, 5.51, 5.04, 5.61, 4.36, 4.62, 5.49, 5.48, 4.8, 6.64, 7.61, 8.37, 7.51, 9.06, 8.95, 10.1, 10.8, 10.68, 11.87, 12.87, 10.46, 9.69, 10.37, 10.27, 10.57, 9.07, 9.62, 9.73, 7.81, 8.77, 9.73, 8.76, 9.38, 9.66, 10.06, 10.05, 10.27, 11.34, 11.3, 10.8, 10.66, 9.93, 11.2, 10.9, 11.42, 11.39, 11.14, 11.54, 11.47, 11.51, 11.8, 11.68, 11.94, 11.96, 12.1, 11.31, 10.75, 11.13, 9.89, 9.42, 9.66, 10.4, 11.93, 14.03, 13.21, 12.82, 12.65, 13.32, 14.28, 14.7, 14.68, 17.34, 18.84, 18.87, 15.96, 17.71, 18.04], "tr": [8.38, 8.7, 9.31, 8.82, 7.99, 7.08, 6.92, 6.79, 7.91, 6.82, 6.27, 6.04, 6.34, 6.67, 5.35, 6.04, 6.47, 7.25, 7.03, 6.74, 6.67, 5.82, 5.48, 5.87, 5.93, 6.02, 6.1, 5.92, 5.39, 4.99, 5.5, 4.73, 4.88, 5.94, 6.13, 7.9, 6.41, 6.32, 5.64, 6.21, 7.68, 8.55, 8.48, 10.69, 11.15, 12.23, 11.72, 12.83, 12.54, 11.31, 10.1, 8.1, 9.18, 8.29, 8.46, 7.66, 8.43, 8.2, 7.86, 8.14, 8.24, 5.97, 7.19, 8.02, 8.79, 9.03, 9.12, 8.22, 8.18, 9.04, 9.08, 9.17, 10.42, 10.65, 10.99, 10.7, 11.53, 11.05, 12.44, 12.87, 12.35, 13.71, 13.96, 12.92, 12.04, 12.35, 12.26, 12.71, 11.48, 11.58, 11.4, 9.67, 10.08, 11.0, 10.28, 10.91, 11.02, 11.27, 10.83, 11.31, 11.94, 11.94, 11.68, 11.29, 10.68, 11.69, 11.75, 11.93, 12.35, 12.87, 13.01, 13.07, 13.65, 13.25, 13.07, 13.64, 13.93, 13.38, 13.64, 13.82, 13.28, 12.13, 11.61, 12.35, 13.28, 14.67, 15.6, 16.31, 16.83, 16.9, 17.45, 18.93, 19.73, 17.99, 20.94, 22.41, 22.51, 21.13, 21.74, 22.053]};
+  var W = 720, H = 340, L = 46, R = 96, T = 18, B = 30;
+  var n = D.starts.length;
+  var ymin = -5, ymax = 30, yticks = [0, 10, 20, 30];
+  function X(i){ return L + (W-L-R) * i/(n-1); }
+  function Y(v){ return T + (H-T-B) * (1 - (v-ymin)/(ymax-ymin)); }
+  function path(a){ var s=''; for(var i=0;i<n;i++){ s += (i?'L':'M') + X(i).toFixed(1) + ' ' + Y(a[i]).toFixed(1) + ' '; } return s; }
+  var xticks = [];
+  for(var i=0;i<n;i++){ var y=+D.starts[i].slice(0,4), m=D.starts[i].slice(5); if(m==='01' && y%2===0) xticks.push([i,y]); }
+  var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="139 個滾動十年窗口之年化報酬：本策略、加權報酬指數、等權含息基準">';
+  svg += '<g class="grid">';
+  yticks.forEach(function(v){ svg += '<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(v)+'" y2="'+Y(v)+'"/>'; });
+  svg += '</g><g class="axis">';
+  yticks.forEach(function(v){ svg += '<text x="'+(L-6)+'" y="'+(Y(v)+3.5)+'" text-anchor="end">'+(v>0?'+':'')+v+'%</text>'; });
+  xticks.forEach(function(t){ svg += '<text x="'+X(t[0])+'" y="'+(H-B+16)+'" text-anchor="middle">'+t[1]+'</text>'; });
+  svg += '</g>';
+  svg += '<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(0)+'" y2="'+Y(0)+'" stroke="var(--muted)" stroke-width="1" stroke-dasharray="2 3" opacity=".6"/>';
+  svg += '<g class="anno"><line x1="'+X(n-1)+'" x2="'+X(n-1)+'" y1="'+T+'" y2="'+(H-B)+'"/>';
+  svg += '<text x="'+(X(n-1)-4)+'" y="'+(T+10)+'" text-anchor="end">最新窗口(2016-10 起)</text></g>';
+  svg += '<g class="series">';
+  svg += '<path d="'+path(D.ew)+'" style="stroke:var(--s-ew)"/>';
+  svg += '<path d="'+path(D.tr)+'" style="stroke:var(--s-tr)"/>';
+  svg += '<path d="'+path(D.strat)+'" style="stroke:var(--s-strat)"/>';
+  svg += '</g>';
+  var labs = [['strat',D.strat[n-1]],['tr',D.tr[n-1]],['ew',D.ew[n-1]]]
+    .map(function(s){ return {k:s[0], v:s[1], y:Y(s[1])}; })
+    .sort(function(a,b){ return a.y-b.y; });
+  for(var i=1;i<labs.length;i++){ if(labs[i].y - labs[i-1].y < 13) labs[i].y = labs[i-1].y + 13; }
+  labs.forEach(function(l){
+    svg += '<text class="endlab" x="'+(W-R+8)+'" y="'+(l.y+4)+'" style="fill:var(--s-'+l.k+')">'+
+      (l.v>0?'+':'')+l.v.toFixed(1)+'%</text>';
+  });
+  svg += '<line class="xh" id="rxh" y1="'+T+'" y2="'+(H-B)+'" x1="0" x2="0"/>';
+  ['strat','tr','ew'].forEach(function(k){
+    svg += '<circle id="rc-'+k+'" r="3.5" style="fill:var(--s-'+k+');opacity:0"/>';
+  });
+  svg += '<rect id="rov" x="'+L+'" y="'+T+'" width="'+(W-L-R)+'" height="'+(H-T-B)+'" fill="transparent"/>';
+  svg += '</svg>';
+  var wrap = document.getElementById('rollWrap');
+  wrap.innerHTML = svg + '<div class="tip" id="rtip"></div>';
+  var tip = document.getElementById('rtip'), xh = document.getElementById('rxh');
+  var ov = document.getElementById('rov'), svgEl = wrap.querySelector('svg');
+  var names = {strat:'本策略', tr:'加權報酬指數', ew:'等權含息基準'};
+  function move(ev){
+    var pt = svgEl.createSVGPoint();
+    var e = ev.touches ? ev.touches[0] : ev;
+    pt.x = e.clientX; pt.y = e.clientY;
+    var p = pt.matrixTransform(svgEl.getScreenCTM().inverse());
+    var i = Math.round((p.x - L)/(W-L-R)*(n-1));
+    i = Math.max(0, Math.min(n-1, i));
+    xh.setAttribute('x1', X(i)); xh.setAttribute('x2', X(i)); xh.style.opacity = 1;
+    var html = '<div class="d">'+D.starts[i]+' 起十年</div>';
+    [['strat',D.strat],['tr',D.tr],['ew',D.ew]].forEach(function(s){
+      var c = document.getElementById('rc-'+s[0]);
+      c.setAttribute('cx', X(i)); c.setAttribute('cy', Y(s[1][i])); c.style.opacity = 1;
+      html += '<div><span class="dot" style="background:var(--s-'+s[0]+')"></span>'+
+        names[s[0]]+' <span class="v">'+(s[1][i]>0?'+':'')+s[1][i].toFixed(1)+'%</span></div>';
+    });
+    html += '<div class="d">對指數超額 '+(D.strat[i]-D.tr[i]>0?'+':'')+(D.strat[i]-D.tr[i]).toFixed(1)+'pp</div>';
+    tip.innerHTML = html; tip.style.opacity = 1;
+    var r = wrap.getBoundingClientRect();
+    var lx = (e.clientX - r.left) + 14;
+    if (lx > r.width - 190) lx = (e.clientX - r.left) - 188;
+    tip.style.left = lx + 'px';
+    tip.style.top = Math.max(0, e.clientY - r.top - 30) + 'px';
+  }
+  function out(){ tip.style.opacity = 0; xh.style.opacity = 0;
+    ['strat','tr','ew'].forEach(function(k){ document.getElementById('rc-'+k).style.opacity = 0; }); }
+  ov.addEventListener('mousemove', move);
+  ov.addEventListener('touchstart', move, {passive:true});
+  ov.addEventListener('touchmove', move, {passive:true});
+  ov.addEventListener('mouseleave', out);
+})();
+</script>
+<div class="wrap" style="padding-top:0">
+<div class="foot">
+  <span>個人研究紀錄，非投資建議。詳見<a href="about.html">關於頁</a>。</span>
+  <span class="mono">資料截至 2026-09-30</span>
+  <div class="links"><a href="about.html#errata">勘誤</a>
+  <a href="feed.xml">RSS</a><a href="6m_monthly.csv">CSV</a></div>
+</div></div>
+</body></html>

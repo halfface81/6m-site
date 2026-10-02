@@ -1,0 +1,153 @@
+/* 6M 動能月誌 — 全站樣式。token 源自體檢表,版型照 Claude Design 定稿 */
+:root{
+  --paper:#FBFAF6; --ink:#1F2933; --muted:#68717C; --hair:#E4E1D8;
+  --up:#C2402F; --dn:#1E7A5F; --seal:#C2402F; --tile:#F2F0E9; --chip:#EBE8DF;
+  --s-strat:#C2402F; --s-tr:#2565A8; --s-ew:#9C7326;
+  --tip-bg:#FFFFFF; --tip-bd:#D8D4C8;
+  --up-1:#EAC8C0; --up-2:#D98A77; --up-3:#C2402F;
+  --dn-1:#C4DCD2; --dn-2:#6FA892; --dn-3:#1E7A5F;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#171B21; --ink:#E7E4DC; --muted:#98A0AA; --hair:#2E333B;
+    --up:#E0684F; --dn:#3FA98B; --seal:#E0684F; --tile:#1F242C; --chip:#242A33;
+    --s-strat:#E0684F; --s-tr:#4E9BD8; --s-ew:#B8862B;
+    --tip-bg:#1F242C; --tip-bd:#3A414C;
+    --up-1:#4A2A24; --up-2:#9A4A39; --up-3:#E0684F;
+    --dn-1:#1F3A31; --dn-2:#2E7A62; --dn-3:#3FA98B;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#171B21; --ink:#E7E4DC; --muted:#98A0AA; --hair:#2E333B;
+  --up:#E0684F; --dn:#3FA98B; --seal:#E0684F; --tile:#1F242C; --chip:#242A33;
+  --s-strat:#E0684F; --s-tr:#4E9BD8; --s-ew:#B8862B;
+  --tip-bg:#1F242C; --tip-bd:#3A414C;
+  --up-1:#4A2A24; --up-2:#9A4A39; --up-3:#E0684F;
+  --dn-1:#1F3A31; --dn-2:#2E7A62; --dn-3:#3FA98B;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Noto Sans TC",-apple-system,"PingFang TC",sans-serif;
+  font-size:16px;line-height:1.85;-webkit-font-smoothing:antialiased}
+.wrap{max-width:62rem;margin:0 auto;padding:0 1.25rem 4rem}
+a{color:inherit}
+.mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+
+/* 導覽 */
+.nav{border-bottom:1px solid var(--hair)}
+.nav-in{max-width:62rem;margin:0 auto;padding:.9rem 1.25rem;
+  display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:700;
+  font-family:"Noto Serif TC",serif;font-size:1.05rem;text-decoration:none;letter-spacing:.05em}
+.brand .seal{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--seal);
+  border:1.5px solid var(--seal);border-radius:4px;padding:.05rem .4rem;font-weight:500}
+.nav-links{margin-left:auto;display:flex;gap:1.1rem;font-size:.92rem}
+.nav-links a{text-decoration:none;color:var(--muted);padding-bottom:.15rem}
+.nav-links a.on{color:var(--ink);font-weight:700;border-bottom:2px solid var(--seal)}
+.theme-btn{font-size:.8rem;color:var(--muted);background:none;
+  border:1px solid var(--hair);border-radius:4px;padding:.15rem .55rem;cursor:pointer}
+
+/* 標題區 */
+.kicker{font-size:.72rem;letter-spacing:.28em;color:var(--seal);font-weight:700;margin:2.6rem 0 .4rem}
+h1{font-family:"Noto Serif TC",serif;font-size:2.2rem;font-weight:700;
+  margin:0;letter-spacing:.05em;text-wrap:balance;line-height:1.4}
+.sub{color:var(--muted);font-size:.95rem;margin:.6rem 0 0;text-wrap:balance}
+.eyebrow{display:flex;align-items:baseline;gap:.6rem;margin:3rem 0 1rem;
+  padding-top:1.2rem;border-top:1px solid var(--ink);font-size:.8rem;letter-spacing:.18em}
+.eyebrow .no{font-family:"IBM Plex Mono",monospace;color:var(--seal);font-weight:500}
+.eyebrow .t{color:var(--ink);font-weight:700}
+.eyebrow .aside{margin-left:auto;color:var(--muted);letter-spacing:.06em;
+  font-family:"IBM Plex Mono",monospace;font-size:.78rem}
+
+/* 數字磚 */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:1.2rem 0}
+.tile{background:var(--tile);border-radius:8px;padding:.9rem 1.1rem}
+.tile .l{font-size:.8rem;color:var(--muted)}
+.tile .n{font-family:"IBM Plex Mono",monospace;font-size:1.9rem;font-weight:500;
+  line-height:1.4;font-variant-numeric:tabular-nums}
+.tile .n small{font-size:1.1rem}
+.pos{color:var(--up)} .neg{color:var(--dn)}
+
+/* 十年牆 */
+.wall{margin:1.2rem 0;overflow-x:auto}
+.wall-grid{display:grid;grid-template-columns:3.2rem repeat(12,minmax(26px,1fr));
+  gap:4px;min-width:560px;align-items:center}
+.wall-grid .ylab,.wall-grid .mlab{font-family:"IBM Plex Mono",monospace;
+  font-size:.72rem;color:var(--muted);text-align:center}
+.wall-grid .ylab{text-align:left}
+.cell{aspect-ratio:1;border:1px solid var(--hair);border-radius:3px;background:transparent}
+.cell.f{border-color:transparent;cursor:pointer}
+.cell.sel{outline:2px solid var(--ink);outline-offset:1px}
+.warm{display:flex;align-items:center;gap:6px;margin:0 0 .8rem;min-width:560px}
+.warm .wl{font-size:.74rem;color:var(--muted);width:3.2rem;line-height:1.4}
+.warm .cell{width:28px;flex:none;border-style:dashed;opacity:.8}
+.warm .note{font-size:.78rem;color:var(--muted);margin-left:.5rem;
+  font-family:"IBM Plex Mono",monospace}
+.wall-foot{display:flex;gap:1.2rem;align-items:baseline;flex-wrap:wrap;
+  border-top:1px solid var(--hair);padding-top:.7rem;font-size:.9rem}
+.wall-foot .mono{font-size:.86rem}
+.wall-foot .read{margin-left:auto;font-size:.9rem}
+.legend-line{display:flex;gap:1rem;flex-wrap:wrap;font-size:.78rem;color:var(--muted);margin-top:.6rem}
+.sw{display:inline-block;width:.7em;height:.7em;border-radius:2px;margin-right:.35em;
+  vertical-align:baseline;transform:translateY(1px)}
+
+/* 圖表 */
+.legend{display:flex;gap:1.1rem;flex-wrap:wrap;font-size:.82rem;color:var(--muted);margin-bottom:.3rem}
+.legend b{color:var(--ink);font-weight:500}
+.chart-wrap{position:relative}
+.chart-wrap svg{display:block;width:100%;height:auto}
+.axis text{font-family:"IBM Plex Mono",monospace;font-size:10.5px;fill:var(--muted)}
+.grid line{stroke:var(--hair);stroke-width:1}
+.series path{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.endlab{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500}
+.tip{position:absolute;pointer-events:none;background:var(--tip-bg);border:1px solid var(--tip-bd);
+  border-radius:6px;padding:.45rem .65rem;font-size:.78rem;line-height:1.55;opacity:0;
+  font-variant-numeric:tabular-nums;box-shadow:0 2px 8px rgba(0,0,0,.08);white-space:nowrap;z-index:2}
+.caption{font-size:.82rem;color:var(--muted);margin-top:.4rem}
+
+/* 煞車儀表 */
+.brake-head{display:flex;align-items:baseline;gap:1.2rem;flex-wrap:wrap}
+.brake-label{font-size:.9rem;color:var(--muted)}
+.brake-val{font-family:"IBM Plex Mono",monospace;font-size:2.2rem;font-weight:500}
+.brake-dist{font-size:.88rem;color:var(--muted);font-family:"IBM Plex Mono",monospace}
+.brake-bar{position:relative;height:14px;background:var(--chip);border-radius:3px;margin:1rem 0 .3rem}
+.brake-danger{position:absolute;left:0;top:0;bottom:0;border-radius:3px 0 0 3px;
+  background:repeating-linear-gradient(135deg,transparent,transparent 4px,
+    color-mix(in srgb, var(--dn) 45%, transparent) 4px,
+    color-mix(in srgb, var(--dn) 45%, transparent) 6px)}
+.brake-stop{position:absolute;top:-5px;bottom:-5px;width:2px;background:var(--ink)}
+.brake-now{position:absolute;top:-5px;bottom:-5px;width:4px;border-radius:2px}
+.brake-zero{position:absolute;top:2px;bottom:2px;width:1px;background:var(--muted);opacity:.6}
+.brake-scale{display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;
+  font-size:.74rem;color:var(--muted)}
+.note{border-left:3px solid var(--seal);background:var(--tile);
+  padding:.7rem 1rem;margin:1.1rem 0;font-size:.95rem}
+
+/* 表格 */
+table{border-collapse:collapse;width:100%;font-size:.9rem;line-height:1.6;font-variant-numeric:tabular-nums}
+.tbl{overflow-x:auto;margin:1rem 0}
+th{font-size:.76rem;letter-spacing:.05em;color:var(--muted);font-weight:500;text-align:right;
+   padding:.45rem .6rem;border-bottom:1px solid var(--hair);white-space:nowrap}
+td{padding:.5rem .6rem;text-align:right;border-bottom:1px solid var(--hair);white-space:nowrap;
+   font-family:"IBM Plex Mono",monospace;font-size:.86rem}
+th:first-child,td:first-child{text-align:left}
+td.zh{font-family:"Noto Sans TC",sans-serif;font-size:.88rem}
+tr.dim td{color:var(--muted)}
+tr.dim td .pos,tr.dim td .neg{opacity:.65}
+
+/* 頁尾 */
+.foot{margin-top:3.5rem;border-top:1px solid var(--hair);
+  padding:1.1rem 0;font-size:.82rem;color:var(--muted);
+  display:flex;gap:1.4rem;flex-wrap:wrap;align-items:baseline}
+.foot .links{margin-left:auto;display:flex;gap:1rem}
+.foot a{color:var(--muted)}
+
+@media (max-width:640px){
+  h1{font-size:1.7rem}
+  .nav-links{gap:.8rem;font-size:.88rem}
+  .tile .n{font-size:1.6rem}
+}

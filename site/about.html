@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>關於|6M 動能月誌</title>
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23C2402F'/%3E%3Ctext x='16' y='22' font-size='14' font-family='monospace' fill='%23FBFAF6' text-anchor='middle' font-weight='bold'%3E6M%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="alternate" type="application/rss+xml" title="6M 動能月誌" href="feed.xml">
+<script>
+(function(){
+  var k='6m-theme';
+  try{var t=localStorage.getItem(k); if(t) document.documentElement.setAttribute('data-theme',t);}catch(e){}
+  window.toggleTheme=function(){
+    var el=document.documentElement;
+    var cur=el.getAttribute('data-theme')||
+      (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var nxt=cur==='dark'?'light':'dark';
+    el.setAttribute('data-theme',nxt);
+    try{localStorage.setItem(k,nxt);}catch(e){}
+  };
+})();
+</script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="index.html"><span class="seal">6M</span>動能月誌</a>
+  <div class="nav-links"><a href="index.html" class="">首頁</a><a href="journal/index.html" class="">月誌</a><a href="factsheet.html" class="">體檢表</a><a href="about.html" class="on">關於</a>
+  <button class="theme-btn" onclick="toggleTheme()">主題</button></div>
+</div></nav>
+<div class="wrap">
+<div class="kicker">關於</div>
+<h1>這是一份實驗紀錄，不是投資建議。</h1>
+
+<div class="eyebrow"><span class="no">01</span><span class="t">作&nbsp;者&nbsp;定&nbsp;調</span></div>
+<p>這個網站是我個人研究紀錄的公開摘要。</p>
+<p>6M 動能策略是一場十年計畫型實驗：2027-01-01 起算，2036-12 結束，每月結算一次，
+結果釘在首頁的十年牆上。2026-09 ~ 12 為執行測試期，照常對帳，不計入十年。</p>
+<p>策略參數不揭露。公開的是結果、口徑和錯誤。數字唯一來源是權威程式與官方 CSV;
+發佈後不靜默修改，錯誤一律公開勘誤。</p>
+
+<div class="eyebrow"><span class="no">02</span><span class="t">免&nbsp;責&nbsp;聲&nbsp;明</span></div>
+<div class="note">本網站內容為個人投資紀錄與研究，不構成投資建議，
+不構成任何證券之要約、要約之引誘或推介；作者持有文中提及之標的；
+過往績效不代表未來表現。</div>
+
+<div class="eyebrow"><span class="no">03</span><span class="t">持&nbsp;倉&nbsp;利&nbsp;益&nbsp;揭&nbsp;露</span></div>
+<p>我以自有資金依本策略實際下單，持有月誌中提及的標的。</p>
+<p>名單一律於交易完成後揭露，並標注「作者已持有」。實際持倉比例依每期
+「下月建議倉位」執行，實際帳戶與模型線的差異見各期對帳表。</p>
+
+<div class="eyebrow"><span class="no">04</span><span class="t">不&nbsp;提&nbsp;供&nbsp;個&nbsp;別&nbsp;諮&nbsp;詢</span></div>
+<p>本站不提供個別諮詢，不回覆個股問題，不收費，不招攬。</p>
+<p>讀者來信只挑選方法、數據與口徑類問題，匿名後在月誌公開回答。
+投稿信箱 <span class="mono">letters@6m.jeromewang.cloud</span>。</p>
+<div class="note" style="border-left-color:var(--hair)">
+一、來信不構成諮詢委任關係。<br>
+二、個股買賣問題不予回覆。<br>
+三、來信即同意匿名公開刊出。</div>
+
+<span id="errata"></span>
+<div class="eyebrow"><span class="no">05</span><span class="t">勘&nbsp;誤&nbsp;總&nbsp;表</span><span class="aside">共 0 筆，永久累積</span></div>
+<p class="caption">尚無勘誤。有錯會記在這裡，永久累積。</p>
+
+<div class="eyebrow"><span class="no">06</span><span class="t">資&nbsp;料&nbsp;下&nbsp;載</span></div>
+<p>官方 CSV 是全站數字的原始數列，每月隨月誌更新。</p>
+<div class="tbl"><table>
+<tr><th>欄位</th><th style="text-align:left">內容</th></tr>
+<tr><td class="mono">date</td><td class="zh" style="text-align:left">月底日期</td></tr>
+<tr><td class="mono">full</td><td class="zh" style="text-align:left">全倉線當月報酬</td></tr>
+<tr><td class="mono">actual</td><td class="zh" style="text-align:left">實際線當月報酬</td></tr>
+<tr><td class="mono">bench</td><td class="zh" style="text-align:left">等權含息池當月報酬</td></tr>
+<tr><td class="mono">vol_w</td><td class="zh" style="text-align:left">當月倉位係數</td></tr>
+</table></div>
+<p><a class="mono" href="6m_monthly.csv">6m_monthly.csv ↓</a>
+<span class="caption mono"> 更新至 2026-09-30</span></p>
+<div class="note">頁面數字與 CSV 不符時，以 CSV 重算為準，並列入勘誤。</div>
+<div class="foot">
+  <span>個人研究紀錄，非投資建議。詳見<a href="about.html">關於頁</a>。</span>
+  <span class="mono">資料截至 2026-09-30</span>
+  <div class="links"><a href="about.html#errata">勘誤</a>
+  <a href="feed.xml">RSS</a><a href="6m_monthly.csv">CSV</a></div>
+</div></div>
+</body></html>

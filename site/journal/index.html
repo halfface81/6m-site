@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>全部月誌|6M 動能月誌</title>
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23C2402F'/%3E%3Ctext x='16' y='22' font-size='14' font-family='monospace' fill='%23FBFAF6' text-anchor='middle' font-weight='bold'%3E6M%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" type="application/rss+xml" title="6M 動能月誌" href="../feed.xml">
+<script>
+(function(){
+  var k='6m-theme';
+  try{var t=localStorage.getItem(k); if(t) document.documentElement.setAttribute('data-theme',t);}catch(e){}
+  window.toggleTheme=function(){
+    var el=document.documentElement;
+    var cur=el.getAttribute('data-theme')||
+      (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var nxt=cur==='dark'?'light':'dark';
+    el.setAttribute('data-theme',nxt);
+    try{localStorage.setItem(k,nxt);}catch(e){}
+  };
+})();
+</script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="../index.html"><span class="seal">6M</span>動能月誌</a>
+  <div class="nav-links"><a href="../index.html" class="">首頁</a><a href="../journal/index.html" class="on">月誌</a><a href="../factsheet.html" class="">體檢表</a><a href="../about.html" class="">關於</a>
+  <button class="theme-btn" onclick="toggleTheme()">主題</button></div>
+</div></nav>
+<div class="wrap">
+<div class="kicker">月誌</div>
+<h1>全部月誌</h1><p class="sub">正式 0 期，暖身 1 期。每期網址永久，發佈後不修改。</p><p class="caption mono" style="margin-top:2rem">2026-09 ~ 12 暖身，不計入</p><div class="tbl"><table><tr><th>期數</th><th>月份</th><th>全倉</th><th>等權池</th><th>倉位</th><th style="text-align:left">摘要</th></tr><tr class=dim><td class="mono">#T1</td><td><a class="mono" href="2026-09.html">/2026-09</a></td><td class="pos">+5.8%</td><td class="pos">+3.6%</td><td>44%</td><td class="zh" style="text-align:left">首月建倉，遞補規則首度實戰</td></tr></table></div>
+<div class="foot">
+  <span>個人研究紀錄，非投資建議。詳見<a href="../about.html">關於頁</a>。</span>
+  <span class="mono">資料截至 2026-09-30</span>
+  <div class="links"><a href="../about.html#errata">勘誤</a>
+  <a href="../feed.xml">RSS</a><a href="../6m_monthly.csv">CSV</a></div>
+</div></div>
+</body></html>
