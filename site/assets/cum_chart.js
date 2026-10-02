@@ -3,7 +3,7 @@
   var D = window.__CUM;
   if(!D || !D.labels.length) return;
   var W=720,H=300,L=52,R=20,T=14,B=26,n=D.labels.length;
-  var all=D.strat.concat(D.ew);
+  var all=D.strat.concat(D.ew).concat(D.tr||[]);
   var ymin=Math.min.apply(null,all)*0.98, ymax=Math.max.apply(null,all)*1.02;
   function X(i){return L+(W-L-R)*(n<2?0.5:i/(n-1));}
   function Y(v){return T+(H-T-B)*(1-(v-ymin)/(ymax-ymin));}
@@ -32,6 +32,12 @@
   if(D.npre>0){
     svg+='<rect x="'+X(0)+'" y="'+T+'" width="'+(X(Math.max(D.npre-1,0))-X(0))+
       '" height="'+(H-T-B)+'" fill="var(--chip)" opacity=".5"/>';
+  }
+  if(D.tr){
+    svg+='<g class="series" style="stroke:var(--s-tr)">';
+    if(D.npre>1) svg+=seg(D.tr,0,D.npre-1,true);
+    if(n-D.npre>0) svg+=seg(D.tr,Math.max(D.npre-1,0),n-1,false);
+    svg+='</g>';
   }
   svg+='<g class="series" style="stroke:var(--s-ew)">';
   if(D.npre>1) svg+=seg(D.ew,0,D.npre-1,true);

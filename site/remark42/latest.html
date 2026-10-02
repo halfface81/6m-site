@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>最新留言|6M 動能月誌</title>
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23C2402F'/%3E%3Ctext x='16' y='22' font-size='14' font-family='monospace' fill='%23FBFAF6' text-anchor='middle' font-weight='bold'%3E6M%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" type="application/rss+xml" title="6M 動能月誌" href="../feed.xml">
+<script>
+(function(){
+  var k='6m-theme';
+  try{var t=localStorage.getItem(k); if(t) document.documentElement.setAttribute('data-theme',t);}catch(e){}
+  window.toggleTheme=function(){
+    var el=document.documentElement;
+    var cur=el.getAttribute('data-theme')||
+      (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var nxt=cur==='dark'?'light':'dark';
+    el.setAttribute('data-theme',nxt);
+    try{localStorage.setItem(k,nxt);}catch(e){}
+    if(window.REMARK42) window.REMARK42.changeTheme(nxt);
+  };
+})();
+</script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="../index.html"><span class="seal">6M</span>動能月誌</a>
+  <div class="nav-links"><a href="../index.html" class="">首頁</a><a href="../journal/index.html" class="">月誌</a><a href="../factsheet.html" class="">體檢表</a><a href="../about.html" class="">關於</a>
+  <button class="theme-btn" onclick="toggleTheme()">主題</button></div>
+</div></nav>
+<div class="wrap">
+<div class="kicker">管理</div>
+<h1>全站最新留言</h1>
+<p class="sub">本頁不對外連結，供作者巡查。管理動作請回到各則留言所在的月誌頁操作。</p>
+<div id="remark42__last-comments"></div>
+<script>
+  var remark_config = {host: "https://comments.jeromewang.cloud", site_id: "6m",
+    components: ["last-comments"], locale: "zh-tw", max_last_comments: 50};
+</script>
+<script src="https://comments.jeromewang.cloud/web/embed.js" defer></script>
+<div class="foot">
+  <span>個人研究紀錄，非投資建議。詳見<a href="../about.html">關於頁</a>。</span>
+  <span class="mono">資料截至 2026-10-01</span>
+  <div class="links"><a href="../about.html#errata">勘誤</a>
+  <a href="../feed.xml">RSS</a><a href="../6m_monthly.csv">CSV</a></div>
+</div></div>
+</body></html>

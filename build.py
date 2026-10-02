@@ -54,7 +54,8 @@ def load_rows():
         for r in csv.DictReader(f):
             rows.append(dict(ym=r['date'][:7], date=r['date'],
                              full=float(r['full']), actual=float(r['actual']),
-                             bench=float(r['bench']), vol_w=float(r['vol_w'])))
+                             bench=float(r['bench']), tr=float(r['taiex_tr']),
+                             vol_w=float(r['vol_w'])))
     return rows
 
 
@@ -224,30 +225,32 @@ def three_tiles(latest, nw):
 def cum_chart(vis, root=''):
     pre = [r for r in vis if not r['official']]
     post = [r for r in vis if r['official']]
-    labels, strat, ew = [], [], []
-    sv = ev = 1.0
+    labels, strat, ew, tr = [], [], [], []
+    sv = ev = tv = 1.0
     for r in pre:
-        sv *= 1 + r['actual']; ev *= 1 + r['bench']
-        labels.append(r['ym']); strat.append(sv); ew.append(ev)
+        sv *= 1 + r['actual']; ev *= 1 + r['bench']; tv *= 1 + r['tr']
+        labels.append(r['ym']); strat.append(sv); ew.append(ev); tr.append(tv)
     if pre:
         strat = [v / sv for v in strat]
         ew = [v / ev for v in ew]
-    sv = ev = 1.0
+        tr = [v / tv for v in tr]
+    sv = ev = tv = 1.0
     for r in post:
-        sv *= 1 + r['actual']; ev *= 1 + r['bench']
-        labels.append(r['ym']); strat.append(sv); ew.append(ev)
+        sv *= 1 + r['actual']; ev *= 1 + r['bench']; tv *= 1 + r['tr']
+        labels.append(r['ym']); strat.append(sv); ew.append(ev); tr.append(tv)
     data = dict(labels=labels, npre=len(pre),
-                strat=[round(v, 4) for v in strat], ew=[round(v, 4) for v in ew])
+                strat=[round(v, 4) for v in strat], ew=[round(v, 4) for v in ew],
+                tr=[round(v, 4) for v in tr])
     return f"""
 {eyebrow('03', '累積曲線')}
 <div class="legend">
   <span><span class="sw" style="background:var(--s-strat)"></span><b>本策略(實際線)</b></span>
   <span><span class="sw" style="background:var(--s-ew)"></span><b>等權含息基準</b></span>
+  <span><span class="sw" style="background:var(--s-tr)"></span><b>加權報酬指數</b></span>
   <span style="margin-left:auto">虛線＝測試期</span>
 </div>
 <div class="chart-wrap" id="cumWrap"></div>
-<p class="caption">累積報酬以 2027-01-01 正式實盤起算日為 0%。測試期段以虛線呈現，不計入十年。
-加權報酬指數軌將於正式期開始後加入。</p>
+<p class="caption">累積報酬以 2027-01-01 正式實盤起算日為 0%。測試期段以虛線呈現，不計入十年。</p>
 <script>window.__CUM = {json.dumps(data)};</script>
 <script src="{root}assets/cum_chart.js"></script>"""
 
@@ -309,6 +312,7 @@ def journal_page(r, vis, bs, rows_all):
     cum_model = math.prod(1 + x['actual'] for x in seg) - 1
     cum_full = math.prod(1 + x['full'] for x in seg) - 1
     cum_bench = math.prod(1 + x['bench'] for x in seg) - 1
+    cum_tr = math.prod(1 + x['tr'] for x in seg) - 1
     accts = [(load_content(x['ym']) or {}).get('account_ret') for x in seg]
     prev_issues = [x for x in vis if x['ym'] < r['ym']]
     issue_start = ((load_content(prev_issues[-1]['ym']) or {}).get('account_value', 1000000)
@@ -349,7 +353,11 @@ def journal_page(r, vis, bs, rows_all):
 <td class="{cls(c.get('account_value', 1000000)/1000000 - 1)}">對計畫期初 1,000,000：{pct(c.get('account_value', 1000000)/1000000 - 1, 2)}</td></tr>
 <tr><td class="zh">全倉線 <span class="hint" title="20 檔等權籃子滿倉的原始報酬，不含倉位調節；十年牆與煞車都用這條">ⓘ</span></td>{cell(r['full'])}{cell(cum_full)}</tr>
 <tr><td class="zh">等權含息池 <span class="hint" title="同流動性條件的等權含息基準，煞車的對照尺">ⓘ</span></td>{cell(r['bench'])}{cell(cum_bench)}</tr>
+<tr><td class="zh">加權報酬指數 <span class="hint" title="臺灣證交所發行量加權股價報酬指數(含息)，可投資的被動替代">ⓘ</span></td>{cell(r['tr'])}{cell(cum_tr)}</tr>
 </table></div>
+<p class="caption">成本口徑：全倉線與實際線均已計交易成本——回測期(2005-03 ~ 2026-08)採
+無折扣牌價(來回 0.585%)，實盤期(2026-09 起)採作者實際費率(來回 0.467%＝單邊手續費
+0.0834%×2＋賣出證交稅 0.3%)；實際帳戶為實付成本；兩項基準依慣例不含成本。</p>
 <p class="caption">帳戶報酬以<b>總資產</b>為分母(含未投入現金)。本月依倉位規則投入
 {r['vol_w']*100:.0f}%(30% 波動目標自動調節)；只看已投入資金，本月報酬為
 {(c.get('invested_ret', 0))*100:+.2f}%，與全倉線的差距見下方拆解。十年牆與煞車皆以全倉線計。
@@ -425,7 +433,7 @@ border:1.5px solid var(--seal);border-radius:4px;padding:.1rem .5rem;font-weight
 <div id="remark42"></div>
 <script>
   var remark_config = {{host: "https://comments.jeromewang.cloud", site_id: "6m",
-    components: ["embed"], locale: "zh", show_email_subscription: false,
+    components: ["embed"], locale: "zh-tw", show_email_subscription: false,
     theme: (document.documentElement.getAttribute('data-theme') === 'dark' ||
       (!document.documentElement.getAttribute('data-theme') &&
        matchMedia('(prefers-color-scheme: dark)').matches)) ? 'dark' : 'light'}};
@@ -440,7 +448,11 @@ border:1.5px solid var(--seal);border-radius:4px;padding:.1rem .5rem;font-weight
 <p class="caption mono">發佈 {c.get('published', '—')} ・結算至 {c.get('data_through', r['date'])}(月底收盤選股、次一交易日開盤結算) ・永久網址 /{r['ym']}</p>"""
     body = head + holds + score + events + nxt + review + brake + mailbag + comments
     err = c.get('errata')
-    body += f'<p class="caption">本期勘誤：{err if err else "尚無"}</p>'
+    if err:
+        etxt = '；'.join(f'{e["date"]}：{e["fix"]}' for e in err)
+        body += f'<div class="note">本期勘誤：{etxt}</div>'
+    else:
+        body += '<p class="caption">本期勘誤：尚無</p>'
     title = f'{r["issue"]} {r["ym"]}|6M 動能月誌'
     return page(title, 'journal', body, root=root, desc=c.get('summary', ''))
 
@@ -532,6 +544,7 @@ def about_page(vis):
 <tr><td class="mono">full</td><td class="zh" style="text-align:left">全倉線當月報酬</td></tr>
 <tr><td class="mono">actual</td><td class="zh" style="text-align:left">實際線當月報酬</td></tr>
 <tr><td class="mono">bench</td><td class="zh" style="text-align:left">等權含息池當月報酬</td></tr>
+<tr><td class="mono">taiex_tr</td><td class="zh" style="text-align:left">加權報酬指數當月報酬</td></tr>
 <tr><td class="mono">vol_w</td><td class="zh" style="text-align:left">當月倉位係數</td></tr>
 </table></div>
 <p><a class="mono" href="6m_monthly.csv">6m_monthly.csv ↓</a>
@@ -615,6 +628,21 @@ def build():
     (OUT / 'about.html').write_text(about_page(vis), encoding='utf-8')
     (OUT / 'factsheet.html').write_text(factsheet_page(), encoding='utf-8')
     (OUT / 'feed.xml').write_text(rss(vis), encoding='utf-8')
+    # 隱藏的留言總覽頁(不入導覽,robots 排除)
+    (OUT / 'remark42').mkdir(exist_ok=True)
+    latest_body = """
+<div class="kicker">管理</div>
+<h1>全站最新留言</h1>
+<p class="sub">本頁不對外連結，供作者巡查。管理動作請回到各則留言所在的月誌頁操作。</p>
+<div id="remark42__last-comments"></div>
+<script>
+  var remark_config = {host: "https://comments.jeromewang.cloud", site_id: "6m",
+    components: ["last-comments"], locale: "zh-tw", max_last_comments: 50};
+</script>
+<script src="https://comments.jeromewang.cloud/web/embed.js" defer></script>"""
+    (OUT / 'remark42' / 'latest.html').write_text(
+        page('最新留言|6M 動能月誌', '', latest_body, root='../'), encoding='utf-8')
+    (OUT / 'robots.txt').write_text('User-agent: *\nDisallow: /remark42/\n', encoding='utf-8')
     print(f'完成：{len(vis)} 期月誌 + 首頁/總覽/關於/體檢表/RSS;'
           f'最新 {latest["issue"]}，煞車 {bs[latest["ym"]]:+.1f}pp，下月倉位 {nw*100:.1f}%')
 
